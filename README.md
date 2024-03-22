@@ -12,7 +12,7 @@ The current version of the package can be installed from source using devtools.
 
 ```R
 library(RobustTSLS)
-load('nak_out_data')
+data('nak_out_data')
 
 Y_mat_or <- data_nak[[1]][-1,]
 W_mat_or <- data_nak[[2]][-1,]
