@@ -1,0 +1,18 @@
+Package: RobustTSLS
+Type: Package
+Title: Robust estimator 
+Version: 0.0.1
+Author: Dmitry Arkhangelsky [aut, cre]
+        Vasily Korovkin [aut]
+Maintainer: Dmitry Arkhangelsky <darkhangel@cemfi.es>
+Description: Robust estimator when the variable of interest is endogenous and 
+             there is access to aggregate time-series instruments.
+Imports: 
+    mvtnorm
+    forecast
+    xtable
+    plotrix
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1
