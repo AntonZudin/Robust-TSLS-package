@@ -2,7 +2,6 @@
 #' @param x a vector of observed.
 #' @param K number of domain splits.
 #' @param deg degrees of freedom for natural cubic splines.
-#' 
 #' @export
 #'
 

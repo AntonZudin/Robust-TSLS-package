@@ -4,10 +4,12 @@
 \alias{plot_1}
 \title{Draw 2 scatterplots of reduced-form and first-stage coefficients for original and robust weights.}
 \usage{
-plot_1(robust_estimate, height = 9, width = 9)
+plot_1(robust_estimate, folder = NULL, height = 9, width = 9)
 }
 \arguments{
 \item{robust_estimate}{The object to use for building the plot.}
+
+\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
 
 \item{height}{The height of the plot.}
 

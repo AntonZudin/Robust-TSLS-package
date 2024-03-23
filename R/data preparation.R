@@ -2,9 +2,7 @@
 #'
 #' @param data_mat a matrix.
 #' @param rank the rank of the low-rank matrix approximation with SVD.
-#' 
 #' @return A list with generalized fixed effects (low-rank matrix), fixed effects matrix ,  ,unit fixed effects and . 
-#' 
 #' @export
 #'
 

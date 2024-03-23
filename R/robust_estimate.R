@@ -1,18 +1,14 @@
 #' Compute the robust estimator for tau.
-#'
-#' 
 #' @param Y_mat_or an nxT matrix of outcome.
 #' @param W_mat_or an nxT matrix of endogenous treatment.
 #' @param Z an nx1 vector of an aggregate instrument.
-#' @param index_sub an nx1 vector with binary coordinates. If the cordinate is `TRUE`, we include this state in the estimtation.
+#' @param index_sub an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.
 #' @param T_0, the size of the learning period.
-#' @param state_names an nx1 vector with state names. It is used in `plot_1` function. 
-#' @param time_column If true, the units are in the rows and the time periods are in the columns in `Y_mat_or` and `W_mat_or`.
+#' @param state_names an nx1 vector with state names. It is used in plot_1 function. 
+#' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.
 #' @param seed, seed to set.
-#' 
-#' @return A robust estimator with 'result', attached as an attribute. It is an output of 'basic_analysis' function. 
-#' 
+#' @return A robust estimator with result, attached as an attribute. It is an output of basic_analysis function. 
 #' @export
 #'
 

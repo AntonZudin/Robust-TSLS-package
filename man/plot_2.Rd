@@ -16,6 +16,8 @@ plot_2(robust_estimate, T_0, start_year = 1, height = 9, width = 16)
 \item{height}{The height of the plot.}
 
 \item{width}{The width of the plot.}
+
+\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
 }
 \description{
 Solid lines represent aggregated Y_t and W_t. Dashed ones represent OLS predictions of the aggregate data with the instrument.

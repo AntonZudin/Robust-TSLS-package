@@ -22,20 +22,20 @@ robust_estimate(
 
 \item{Z}{an nx1 vector of an aggregate instrument.}
 
-\item{index_sub}{an nx1 vector with binary coordinates. If the cordinate is `TRUE`, we include this state in the estimtation.}
+\item{index_sub}{an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.}
 
 \item{T_0, }{the size of the learning period.}
 
-\item{state_names}{an nx1 vector with state names. It is used in `plot_1` function.}
+\item{state_names}{an nx1 vector with state names. It is used in plot_1 function.}
 
-\item{time_column}{If true, the units are in the rows and the time periods are in the columns in `Y_mat_or` and `W_mat_or`.}
+\item{time_column}{If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.}
 
 \item{seed, }{seed to set.}
 
 \item{D}{an nx1 vector of exposure.}
 }
 \value{
-A robust estimator with 'result', attached as an attribute. It is an output of 'basic_analysis' function.
+A robust estimator with result, attached as an attribute. It is an output of basic_analysis function.
 }
 \description{
 Compute the robust estimator for tau.

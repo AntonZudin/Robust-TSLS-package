@@ -4,10 +4,12 @@
 \alias{plot_3}
 \title{Draw a comparative scatterplot for original weights and robust weights.}
 \usage{
-plot_3(robust_estimate, width = 9, height = 9)
+plot_3(robust_estimate, folder = NULL, width = 9, height = 9)
 }
 \arguments{
 \item{robust_estimate}{The object to use for building the plot.}
+
+\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
 
 \item{width}{The width of the plot.}
 

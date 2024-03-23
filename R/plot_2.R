@@ -4,11 +4,11 @@
 #' Blue and red dashed lines in the robust weights plot stand for learning and estimation periods respectively.
 #' 
 #' @param robust_estimate The object to use for building the plot.
-#' @param height The height of the plot.
-#' @param width The width of the plot.
 #' @param T_0 The number of periods used for constructing the weights.
 #' @param start_year The starting year in the plot's x-axis.
-#' @method Plot for original weights and robust weights.
+#' @param folder The folder where the plots are saved. NULL stands for the working directory.
+#' @param height The height of the plot.
+#' @param width The width of the plot.
 #' @export
 #'
 
@@ -42,7 +42,13 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
   r_sq_w_or <- 1 - var_biased(W_agg[(T_0+1):T] - W_fit[(T_0+1):T]) / var_biased(W_agg[(T_0+1):T])
   r_sq_y_or <- 1 - var_biased(Y_agg[(T_0+1):T] - Y_fit[(T_0+1):T]) / var_biased(Y_agg[(T_0+1):T])
   
-  pdf('plots/nuk_original.pdf', width = width, height = height)
+  
+  if (is.null(folder)){
+    pdf('nuk_original.pdf', width = width, height = height)
+  } else{
+    dir_1 <- paste(folder, "nuk_original.pdf", sep = "/")
+    pdf(dir_1, width = width, height = height)
+  }
   
   par(mfrow=c(2,1)) 
   plot(years,W_agg, ylim = c(min(W_agg),max(W_agg)+0.1), type = 'b',xlab ="",ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19,frame = FALSE)
@@ -60,7 +66,12 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
   
   
   
-  pdf('plots/nuk_new.pdf', width =  width, height = height)
+  if (is.null(folder)){
+    pdf('nuk_new.pdf', width = width, height = height)
+  } else{
+    dir_2 <- paste(folder, "nuk_new.pdf", sep = "/")
+    pdf(dir_2, width = width, height = height)
+  }
   
   par(mfrow=c(2,1)) 
   

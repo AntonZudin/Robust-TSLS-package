@@ -1,14 +1,17 @@
 #' Draw 2 scatterplots of reduced-form and first-stage coefficients for original and robust weights.
 #' @param robust_estimate The object to use for building the plot.
+#' @param folder The folder where the plots are saved. NULL stands for the working directory.
 #' @param height The height of the plot.
 #' @param width The width of the plot.
-#' @method Plots of reduced-form and first-stage coefficients.
 #' @export
 #'
 
 
 
-plot_1 <- function(robust_estimate, height = 9, width = 9) {
+plot_1 <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
+  
+  
+  
   
   basic_res <- robust_estimate$result
   
@@ -68,7 +71,12 @@ plot_1 <- function(robust_estimate, height = 9, width = 9) {
   
   
   
-  pdf('plots/nuk_points_1.pdf', width = 9, height = 9 )
+  if (is.null(folder)){
+    pdf('nuk_points_1.pdf', width = width, height = height)
+  } else{
+    dir_1 <- paste(folder, "nuk_points_1.pdf", sep = "/")
+    pdf(dir_1, width = width, height = height)
+  }
   
   plot(x=fs_coeffs_full, y=rf_coeffs_full, ylim = range_rf,xlim = range_fs, pch = 1, frame = FALSE,
        bg=NULL , col=1 + as.numeric(omega_or_norm>0), cex = abs(omega_or_norm),
@@ -79,8 +87,13 @@ plot_1 <- function(robust_estimate, height = 9, width = 9) {
                                                    list(tau_or= round(tau_or,2),se_or_cor = round(se_or_cor,2))),cex=1)
   dev.off()
   
-  pdf('plots/nuk_points_2.pdf', width=9, height=9)
   
+  if (is.null(folder)){
+    pdf('nuk_points_2.pdf', width = width, height = height)
+  } else{
+    dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
+    pdf(dir_2, width = width, height = height)
+  }
   
   plot(x=fs_coeffs_post, y=rf_coeffs_post, pch = 1,ylim = range_rf,xlim = range_fs, frame = FALSE,
        bg=NULL , col=1 + as.numeric(omega_rob_norm>0), cex = abs(omega_rob_norm),
