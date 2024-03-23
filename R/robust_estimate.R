@@ -48,7 +48,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z, index_sub = NULL, T_0 = NULL,
   
   basic_res <- basic_analysis(Y_mat = Y_mat_or, W_mat = W_mat_or, Z = Z, 
                               X_unit = matrix(1,ncol = 1, nrow = n), psi = matrix(1,ncol = 1, nrow = T),
-                              D = pi_unit, T_0 = T_0)
+                              D = pi_unit, T_0 = T_0, seed)
   
   
   

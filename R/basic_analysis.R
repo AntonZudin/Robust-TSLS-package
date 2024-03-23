@@ -75,14 +75,14 @@ basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
   
   ## Cluster at yearly level
   
-  res_agg_rob <- (t(omega_rob)%*%Y_post - tau_rob*t(omega_rob)%*%W_post)/n
-  se_rob <- sd(res_agg_rob*Z_dem_post)/(abs(pi_rob)*var_biased(Z_dem_post))/sqrt(T-T_0)
+  res_agg_rob <- (t(omega_rob)%*%Y_post - tau_rob*t(omega_rob)%*%W_post) / n
+  se_rob <- sd(res_agg_rob*Z_dem_post)/(abs(pi_rob)*var_biased(Z_dem_post)) / sqrt(T-T_0)
   
   res_agg_alt <- (t(omega_or)%*%Y_post - tau*t(omega_or)%*%W_post)/n
-  se_alt <- sd(res_agg_alt*Z_dem_post)/(abs(pi_alt)*var_biased(Z_dem_post))/sqrt(T-T_0)
+  se_alt <- sd(res_agg_alt*Z_dem_post)/(abs(pi_alt)*var_biased(Z_dem_post)) / sqrt(T-T_0)
   
-  res_agg <- (t(omega_or)%*%Y_mat - tau*t(omega_or)%*%W_mat)/n
-  se_or <- sd(res_agg*Z_dem)/(abs(pi)*var_biased(Z_dem))/sqrt(T)
+  res_agg <- (t(omega_or)%*%Y_mat - tau*t(omega_or)%*%W_mat) / n
+  se_or <- sd(res_agg*Z_dem) / (abs(pi)*var_biased(Z_dem)) / sqrt(T)
   
   ## computation based on simulations
   
