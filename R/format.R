@@ -1,6 +1,6 @@
 #' Format a robust estimator object.
 #' @param estimate The object to format.
-#' @method format robust_estimate.
+#' @method format robust_estimate
 #' @export
 
 

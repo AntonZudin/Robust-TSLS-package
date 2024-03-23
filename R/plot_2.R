@@ -14,7 +14,7 @@
 
 
 plot_2 <- function(robust_estimate, T_0, start_year=1, 
-                   height = 9, width = 16) {
+                   folder = NULL, height = 9, width = 16) {
   
   basic_res <- robust_estimate$result  
   
