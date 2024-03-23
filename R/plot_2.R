@@ -16,9 +16,7 @@
 plot_2 <- function(robust_estimate, T_0, start_year=1, 
                    folder = NULL, height = 9, width = 16) {
   
-  basic_res <- robust_estimate$result  
-  
-  years <- start_year:(start_year+T-1)
+  basic_res <- robust_estimate$result
   
   
   scale_w_agg <- (max(basic_res[[5]][,1])-min(basic_res[[5]][,1]))/2
@@ -33,6 +31,11 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
   W_fit_rob <- basic_res[[5]][,6]/scale_w_agg
   Y_agg_rob <- basic_res[[5]][,7]/scale_y_agg
   Y_fit_rob <- basic_res[[5]][,8]/scale_y_agg
+  
+  T <- length(W_agg)
+  print(T)
+    
+  years <- start_year : (start_year + T - 1)
   
   
   
