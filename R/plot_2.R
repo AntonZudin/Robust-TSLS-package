@@ -32,9 +32,8 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
   Y_agg_rob <- basic_res[[5]][,7]/scale_y_agg
   Y_fit_rob <- basic_res[[5]][,8]/scale_y_agg
   
+  
   T <- length(W_agg)
-  print(T)
-    
   years <- start_year : (start_year + T - 1)
   
   
@@ -54,10 +53,6 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
   }
   
   
-  print(years)
-  print(W_agg)
-  print(Y_agg)
-  print(robust_estimate)
   
   par(mfrow=c(2,1)) 
   plot(years,W_agg, ylim = c(min(W_agg),max(W_agg)+0.1), type = 'b',xlab ="",ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19,frame = FALSE)
