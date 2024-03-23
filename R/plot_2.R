@@ -50,8 +50,12 @@ plot_2 <- function(robust_estimate, T_0, start_year=1,
     pdf(dir_1, width = width, height = height)
   }
   
+  print(length(years))
+  print(dim(W_agg))
+  print(dim(Y_agg))
+  
   par(mfrow=c(2,1)) 
-  plot(years,W_agg, ylim = c(min(W_agg),max(W_agg) + 0.1), type = 'b',xlab ="",ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19 ,frame = FALSE)
+  plot(years,W_agg, ylim = c(min(W_agg),max(W_agg)+0.1), type = 'b',xlab ="",ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19,frame = FALSE)
   lines(years,W_fit,col = 'red',lty = 2, type = 'b', pch = 18)
   abline(h = 0, lty = 2, col = 'black')
   legend('bottomright', legend = c('Aggregate data, original weights', 'OLS fit, full sample'), col = c('black','red'), pch = c(19,18))
