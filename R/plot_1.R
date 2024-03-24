@@ -10,7 +10,7 @@
 
 plot_1 <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
   
-  
+print
   
   
   basic_res <- robust_estimate$result

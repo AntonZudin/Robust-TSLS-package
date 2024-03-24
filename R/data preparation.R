@@ -2,7 +2,7 @@
 #'
 #' @param data_mat a matrix.
 #' @param rank the rank of the low-rank matrix approximation with SVD.
-#' @return A list with generalized fixed effects (low-rank matrix), fixed effects matrix ,  ,unit fixed effects and . 
+#' @return A list with generalized fixed effects (low-rank matrix), two-way fixed effects matrix, residuals matrix, unit fixed effects and factor loadings. 
 #' @export
 #'
 
@@ -21,7 +21,7 @@ data_preparation <- function(data_mat, rank){
   
   magnitude <- svd_data_mat$d[1:rank] / sqrt(n * T)
   L_mat_orig <- factor_unit %*% diag(magnitude, nrow = rank, ncol = rank) %*%
-    t(factor_time) #matrix aproximation
+    t(factor_time) #matrix approximation
   
   error_mat <- data_mat - L_mat_orig
   F_mat <- outer(rowMeans(L_mat_orig),rep(1,T)) +

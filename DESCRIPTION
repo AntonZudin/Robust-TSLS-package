@@ -4,9 +4,10 @@ Title: Robust estimator
 Version: 0.0.1
 Author: Dmitry Arkhangelsky [aut, cre]
         Vasily Korovkin [aut]
+        Anton Zudin [cre]
 Maintainer: Dmitry Arkhangelsky <darkhangel@cemfi.es>
 Description: Robust estimator when the variable of interest is endogenous and 
-             there is access to aggregate time-series instruments.
+             there is access to aggregate time-series instrument.
 Depends: R (>= 3.5), mvtnorm, forecast, xtable, plotrix
 License: GPL (>= 2)
 Encoding: UTF-8
