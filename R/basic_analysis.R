@@ -3,8 +3,8 @@
 #' @param Y_mat an nxT matrix of outcome.
 #' @param W_mat an nxT matrix of endogenous treatment.
 #' @param Z an nx1 vector of an aggregate instrument.
-#' @param psi aggregate covariates.
-#' @param X_unit unit covariate.
+#' @param unit_covariates unit covariate(s).
+#' @param time_covariates time covariate(s).
 #' @param D an nx1 vector of exposure.
 #' @param T_0 the size of the learning period.
 #' @param seed a seed to set.
@@ -123,7 +123,7 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   W_agg <-  (t(omega_or) %*% W_mat) / n
   W_fit <- lm(t(W_agg)~Z+psi)$fitted.values
   
-  Y_agg <- (t(omega_or) %*% Y_mat)/n
+  Y_agg <- (t(omega_or) %*% Y_mat) / n
   Y_fit <- lm(t(Y_agg)~Z+psi)$fitted.values
   
   W_agg_post_rob <- t((t(omega_rob)%*%W_post)/n)

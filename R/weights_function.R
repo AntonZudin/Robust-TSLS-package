@@ -3,8 +3,8 @@
 #' @param W_mat an nxT matrix of endogenous treatment.
 #' @param Z_agg an nx1 vector of an aggregate instrument.
 #' @param D_unit an nx1 vector of exposure.
-#' @param X_unit unit covariate.
-#' @param psi aggregate covariates.
+#' @param unit_covariates unit covariate(s).
+#' @param time_covariates aggregate covariate(s).
 #' @param lambda regularization hyperparameter.
 #' 
 #' @return A list with original and robust weight vectors.
@@ -38,7 +38,7 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   W_dm <- W_mat - outer(rep(1,n),colMeans(W_mat)) -  outer(rowMeans(W_mat),rep(1,T)) + mean(W_mat)
   
   Z_agg <- matrix(Z_agg, nrow = T)
-  Z_full <- cbind(psi,Z_agg)
+  Z_full <- cbind(time_covariates, Z_agg)
   M_z <- diag(T) - Z_full%*%solve(t(Z_full) %*% Z_full) %*% t(Z_full)
   Y_z <- Y_dm %*% M_z
   W_z <- W_dm %*% M_z
@@ -47,8 +47,8 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   
   if (lambda == 'basic') {lambda <- max(norm(Y_norm,'2')^2,norm(W_norm,'2')^2)}
   
-  X <- cbind(X_unit,D_unit)
-  A <- cbind(Y_norm,W_norm)
+  X <- cbind(unit_covariates, D_unit)
+  A <- cbind(Y_norm, W_norm)
   
   D <- solve(A%*%t(A) + lambda*diag(n)/T)
   weights_un <- D%*%X%*%solve(t(X)%*%D%*%X)%*%c(rep(0,dim_x),1)
