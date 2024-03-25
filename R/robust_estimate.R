@@ -26,7 +26,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z, unit_covariates = NULL, time_
     W_mat_or <- t(as.matrix(W_mat_or))
     Z <- as.vector(Z)
   }  
-  
+  print(1)
   
   
   if (!is.null(index_sub)){

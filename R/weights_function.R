@@ -20,9 +20,18 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   n <- dim(Y_mat)[1]
   dim_x <- dim(unit_covariates)[2] + 1
   
+  if (is.null(unit_covariates)) {
+    unit_covariates <-  matrix(1, ncol = 1, nrow = n)
+  } else {
+    unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
+  }
   
-  unit_covariates = cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
-  time_covariates = cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
+  if (is.null(time_covariates)) {
+    time_covariates <-  matrix(1, ncol = 1, nrow = T)
+  } else {
+    time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
+  }
+
   
   
   Y_dm <- Y_mat - outer(rep(1,n),colMeans(Y_mat)) -  outer(rowMeans(Y_mat),rep(1,T)) + mean(Y_mat)
