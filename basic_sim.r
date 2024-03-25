@@ -1,5 +1,32 @@
-basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,cov_mat_rf,pi_unit,theta_w,theta_y,
-				tau,rho_agg, rho_cross,T_0,Z_fit, test = FALSE, S = 300){
+#' Calculate the necessary for .
+#'
+#' @param F_mat_W an nxT two-way fixed effects matrix for W.
+#' @param L_mat_W an nxT generalized fixed effects (low-rank) matrix for W.
+#' @param F_mat_Y an nxT two-way fixed effects matrix for Y.
+#' @param L_mat_Y an nxT generalized fixed effects (low-rank) matrix for W.
+#' @param cov_mat_fs 
+#' @param cov_mat_rf 
+#' @param pi_unit 
+#' @param theta_w the unobserved aggregate confounder coefficient 
+#' @param theta_y the unobserved aggregate confounder coefficient  
+#' @param tau the real tau
+#' @param rho_agg
+#' @param rho_cross
+#' @param T_0
+#' @param Z_fit
+#' @param test If true
+#' @param S
+#'
+#' @return A list with weights, coefficients, standard errors, delta and pi and aggregated W, Y (observed and predicted).
+#'
+#' @export
+#' 
+
+
+
+basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, 
+                      cov_mat_rf,pi_unit,theta_w,theta_y, tau, 
+                      rho_agg, rho_cross, T_0, Z_fit, test = FALSE, S = 300){
 				
 	
 	### Data generation 	
@@ -43,23 +70,23 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,cov_mat_rf,
 	### Coefficients
 	
 	
-	pi_or <- lm(agg_W_or_b~art_Z[(T_0+1):T])$coefficients[2]
-	delta_or <- lm(agg_Y_or_b~art_Z[(T_0+1):T])$coefficients[2]
+	pi_or <- lm(agg_W_or_b~art_Z[(T_0 + 1):T])$coefficients[2]
+	delta_or <- lm(agg_Y_or_b~art_Z[(T_0 + 1):T])$coefficients[2]
 	tau_or <- delta_or/pi_or
 
 
 	
-	pi_rob <- lm(agg_W_rob_b~art_Z[(T_0+1):T])$coefficients[2]
-	delta_rob <- lm(agg_Y_rob_b~art_Z[(T_0+1):T])$coefficients[2]
-	tau_rob <- delta_rob/pi_rob
+	pi_rob <- lm(agg_W_rob_b~art_Z[(T_0 + 1):T])$coefficients[2]
+	delta_rob <- lm(agg_Y_rob_b~art_Z[(T_0 + 1):T])$coefficients[2]
+	tau_rob <- delta_rob / pi_rob
 
 
 	### Results
 	
 	pi_rob_true <- mean(omega_rob_b*pi_unit)
-	delta_rob_true <- tau*mean(omega_rob_b*pi_unit)
+	delta_rob_true <- tau * mean(omega_rob_b*pi_unit)
 	pi_or_true <- mean(omega_or_b*pi_unit)
-	delta_or_true <- tau*mean(omega_or_b*pi_unit)
+	delta_or_true <- tau * mean(omega_or_b*pi_unit)
 	
 	
 	
@@ -71,7 +98,7 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,cov_mat_rf,
 	dif_tau_or <- tau_or - tau
 	
 	
-	results <- as.numeric(c(dif_rob_pi,dif_or_pi,
+	results <- as.numeric(c(dif_rob_pi, dif_or_pi,
 							dif_rob_delta, dif_or_delta,
 							dif_tau_rob, dif_tau_or
 	))
@@ -79,30 +106,30 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,cov_mat_rf,
 	
 	if (test == TRUE){
 			
-		art_Z_ts <- ts(art_Z, start=1, end=T, frequency=1) 
+		art_Z_ts <- ts(art_Z, start = 1, end = T, frequency = 1) 
 		art_Z_fit <- auto.arima(art_Z_ts)
-		art_Z_dem <- art_Z[(T_0+1):T]-mean(art_Z[(T_0+1):T])
+		art_Z_dem <- art_Z[(T_0 + 1):T] - mean(art_Z[(T_0 + 1):T])
 	
 		results_sd <- matrix(0, ncol = 2, nrow = S)
 	
 		for(j in 1:S){
 	
-			art_Z_j <- as.numeric(simulate(art_Z_fit, T-T_0))
-			art_Z_dem_j <- art_Z_j-mean(art_Z_j)
-			rob_j <- mean((agg_Y_rob_b - tau_rob*agg_W_rob_b)*art_Z_dem_j)/(pi_rob*var(art_Z_dem_j))
-			or_j <-  mean((agg_Y_or_b - tau_or*agg_W_or_b)*art_Z_dem_j)/(pi_or*var(art_Z_dem_j))
+			art_Z_j <- as.numeric(simulate(art_Z_fit, T - T_0))
+			art_Z_dem_j <- art_Z_j - mean(art_Z_j)
+			rob_j <- mean((agg_Y_rob_b - tau_rob*agg_W_rob_b)*art_Z_dem_j) / (pi_rob*var(art_Z_dem_j))
+			or_j <-  mean((agg_Y_or_b - tau_or*agg_W_or_b)*art_Z_dem_j) / (pi_or*var(art_Z_dem_j))
 			results_sd[j,] <- c(rob_j,or_j)	
 		}
 	
 	
-	se_rob <- sd(results_sd[,1])
-	test_rob <- (tau_rob -tau)/se_rob
+    se_rob <- sd(results_sd[, 1])
+	  test_rob <- (tau_rob - tau)/se_rob
 	
 	
-	se_or <- sd(results_sd[,2])
-	test_or <- (tau_or -tau)/se_or
+	  se_or <- sd(results_sd[, 2])
+	  test_or <- (tau_or - tau) / se_or
 	
-	results <- c(results, test_rob, test_or)
+	  results <- c(results, test_rob, test_or)
 	
 	}
 	
