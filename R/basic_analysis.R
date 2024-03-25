@@ -86,6 +86,8 @@ basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
   
   ## computation based on simulations
   
+  res_agg_rob <- (t(omega_rob)%*%Y_post - tau_rob*t(omega_rob)%*%W_post) / n
+  
   Z_fit <- auto.arima(Z_dem)
   S <- 200
   results_sd <- matrix(0, ncol = 3, nrow = S)
