@@ -149,11 +149,11 @@ basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
   rownames(coefs_matrix) <- c('original','robust','alternative')
   
   #se_vec <- c(se_or,se_rob,se_alt,se_or_alt,se_rob_alt,se_or_alt_alt)
-  se_vec <- c(se_rob_alt,se_or_alt_alt)
+  se_vec <- c(se_or, se_rob, se_or_alt)
   names(se_vec) <- c('se_or_cor','se_rob_cor','se_alt_cor')
   
   ind_coefs <- cbind(rf_coefs_or,fs_coefs_or,rf_coefs,fs_coefs)
-  colnames(ind_coefs) <- c('rf_or','fs_or','rf_post','fs_post')
+  colnames(ind_coefs) <- c('rf_or', 'fs_or', 'rf_post', 'fs_post')
   
   agg_fits <- cbind(t(W_agg),W_fit,t(Y_agg),Y_fit,c(W_agg_pre_rob,W_agg_post_rob),
                     c(W_fit_pre_rob,W_fit_post_rob),c(Y_agg_pre_rob,Y_agg_post_rob),
