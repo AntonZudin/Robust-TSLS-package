@@ -30,31 +30,31 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   omega_or <-  weights_function(Y_mat,W_mat,Z, D_unit = D, unit_covariates = unit_covariates,
                                 time_covariates = time_covariates, lambda = 100000)
   
-  Z_dem <- lm(Z~psi)$residuals #substitute expectation 
+  Z_dem <- lm(Z~time_covariates)$residuals #substitute expectation 
   tau <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(t(omega_or)%*%W_mat%*%Z_dem))
   
-  pi <- as.numeric(t(omega_or)%*%W_mat%*%Z_dem/(var_biased(Z_dem)*n*(T)))
+  pi <- as.numeric(t(omega_or)%*%W_mat%*%Z_dem/(var_biased(Z_dem)*n*T))
   
-  delta <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(var_biased(Z_dem)*n*(T)))
+  delta <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(var_biased(Z_dem)*n*T))
   
   ## our estimator
   
   Y_pre <- Y_mat[,1:T_0]
   W_pre <- W_mat[,1:T_0]
   Z_pre <- Z[1:T_0]
-  psi_pre <- psi[1:T_0,]
+  time_covariates_pre <- time_covariates[1:T_0,]
   
   omega_rob <- weights_function(Y_pre, W_pre,Z_pre, D_unit = D, unit_covariates = unit_covariates, 
-                                time_covariates = time_covariates)
+                                time_covariates = time_covariates_pre)
   
   
   Y_post <- Y_mat[,(T_0+1):T]
   W_post <- W_mat[,(T_0+1):T]
   Z_post <- Z[(T_0+1):T]
-  psi_post <- psi[(T_0+1):T,]
+  time_covariates_post <- time_covariates[(T_0+1):T,]
   
-  Z_dem_pre <- lm(Z_pre~psi_pre)$residuals
-  Z_dem_post <- lm(Z_post~psi_post)$residuals
+  Z_dem_pre <- lm(Z_pre~time_covariates_pre)$residuals
+  Z_dem_post <- lm(Z_post~time_covariates_post)$residuals
   
   tau_rob <- as.numeric(t(omega_rob)%*%Y_post%*%Z_dem_post/(t(omega_rob)%*%W_post%*%Z_dem_post))
   
@@ -121,23 +121,23 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   
   ###
   W_agg <-  (t(omega_or) %*% W_mat) / n
-  W_fit <- lm(t(W_agg)~Z+psi)$fitted.values
+  W_fit <- lm(t(W_agg)~Z+time_covariates)$fitted.values
   
   Y_agg <- (t(omega_or) %*% Y_mat) / n
-  Y_fit <- lm(t(Y_agg)~Z+psi)$fitted.values
+  Y_fit <- lm(t(Y_agg)~Z+time_covariates)$fitted.values
   
   W_agg_post_rob <- t((t(omega_rob)%*%W_post)/n)
-  W_fit_post_rob <- lm(W_agg_post_rob~Z_post+psi_post)$fitted.values
+  W_fit_post_rob <- lm(W_agg_post_rob~Z_post+time_covariates_post)$fitted.values
   
-  ###Robust weigts
+  ###Robust weights
   Y_agg_post_rob <- t((t(omega_rob)%*%Y_post)/n)
-  Y_fit_post_rob <- lm(Y_agg_post_rob~Z_post+psi_post)$fitted.values
+  Y_fit_post_rob <- lm(Y_agg_post_rob~Z_post+time_covariates_post)$fitted.values
   
   W_agg_pre_rob <- t((t(omega_rob)%*%W_pre)/n)
-  W_fit_pre_rob <- lm(W_agg_pre_rob~Z_pre+psi_pre)$fitted.values
+  W_fit_pre_rob <- lm(W_agg_pre_rob~Z_pre+time_covariates_pre)$fitted.values
   
   Y_agg_pre_rob <- t((t(omega_rob)%*%Y_pre)/n)
-  Y_fit_pre_rob <- lm(Y_agg_pre_rob~Z_pre+psi_pre)$fitted.values
+  Y_fit_pre_rob <- lm(Y_agg_pre_rob~Z_pre+time_covariates_pre)$fitted.values
   
   ## Reporting results
   
