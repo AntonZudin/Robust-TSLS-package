@@ -14,11 +14,15 @@
 
 
 
-weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, X_unit = NULL, psi = NULL, lambda = 'basic') {
+weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL, time_covariates = NULL, lambda = 'basic') {
   
   T <- dim(Y_mat)[2]
   n <- dim(Y_mat)[1]
-  dim_x <- dim(X_unit)[2]
+  dim_x <- dim(unit_covariates)[2] + 1
+  
+  
+  unit_covariates = cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
+  time_covariates = cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
   
   
   Y_dm <- Y_mat - outer(rep(1,n),colMeans(Y_mat)) -  outer(rowMeans(Y_mat),rep(1,T)) + mean(Y_mat)
@@ -26,9 +30,9 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, X_unit = NULL, psi = N
   
   Z_agg <- matrix(Z_agg, nrow = T)
   Z_full <- cbind(psi,Z_agg)
-  M_z <- diag(T) - Z_full%*%solve(t(Z_full)%*%Z_full)%*%t(Z_full)
-  Y_z <- Y_dm%*%M_z
-  W_z <- W_dm%*%M_z
+  M_z <- diag(T) - Z_full%*%solve(t(Z_full) %*% Z_full) %*% t(Z_full)
+  Y_z <- Y_dm %*% M_z
+  W_z <- W_dm %*% M_z
   Y_norm <- Y_z/norm(Y_z-mean(Y_z),'f')
   W_norm <- W_z/norm(W_z-mean(W_z),'f')
   

@@ -17,7 +17,7 @@
 
 
 
-basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
+basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D, T_0, seed = 1234) {
   
   set.seed(seed)
   
@@ -27,8 +27,8 @@ basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
   
   ## basic analysis
   
-  omega_or <-  weights_function(Y_mat,W_mat,Z, D_unit = D,
-                                X_unit = X_unit, psi = psi, lambda = 100000)
+  omega_or <-  weights_function(Y_mat,W_mat,Z, D_unit = D, unit_covariates = unit_covariates,
+                                time_covariates = time_covariates, lambda = 100000)
   
   Z_dem <- lm(Z~psi)$residuals #substitute expectation 
   tau <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(t(omega_or)%*%W_mat%*%Z_dem))
@@ -44,8 +44,8 @@ basic_analysis <- function(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234) {
   Z_pre <- Z[1:T_0]
   psi_pre <- psi[1:T_0,]
   
-  omega_rob <- weights_function(Y_pre, W_pre,Z_pre, D_unit = D,
-                                X_unit = X_unit, psi = psi_pre)
+  omega_rob <- weights_function(Y_pre, W_pre,Z_pre, D_unit = D, unit_covariates = unit_covariates, 
+                                time_covariates = time_covariates)
   
   
   Y_post <- Y_mat[,(T_0+1):T]

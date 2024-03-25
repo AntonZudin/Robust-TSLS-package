@@ -14,7 +14,7 @@
 
 
 
-robust_estimate <- function(Y_mat_or, W_mat_or, Z, index_sub = NULL, T_0 = NULL, 
+robust_estimate <- function(Y_mat_or, W_mat_or, Z, unit_covariates = NULL, time_covariates = NULL, index_sub = NULL, T_0 = NULL, 
                             unit_names = NULL, time_column = TRUE, seed = 1234){
   
   if (time_column == TRUE) {
@@ -47,7 +47,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z, index_sub = NULL, T_0 = NULL,
   
   
   basic_res <- basic_analysis(Y_mat = Y_mat_or, W_mat = W_mat_or, Z = Z, 
-                              X_unit = matrix(1,ncol = 1, nrow = n), psi = matrix(1,ncol = 1, nrow = T),
+                              unit_covariates = unit_covariates, time_covariates = time_covariates,
                               D = pi_unit, T_0 = T_0, seed)
   
   
