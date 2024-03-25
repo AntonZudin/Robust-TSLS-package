@@ -18,7 +18,7 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   
   T <- dim(Y_mat)[2]
   n <- dim(Y_mat)[1]
-  dim_x <- dim(unit_covariates)[2] + 1
+  
   
   if (is.null(unit_covariates)) {
     unit_covariates <-  matrix(1, ncol = 1, nrow = n)
@@ -31,6 +31,8 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   } else {
     time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
   }
+  
+  dim_x <- dim(unit_covariates)[2]
 
   
   
@@ -49,6 +51,8 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL
   
   X <- cbind(unit_covariates, D_unit)
   A <- cbind(Y_norm, W_norm)
+  
+  print(rep(0,dim_x))
   
   D <- solve(A%*%t(A) + lambda*diag(n)/T)
   weights_un <- D%*%X%*%solve(t(X)%*%D%*%X)%*%c(rep(0,dim_x),1)

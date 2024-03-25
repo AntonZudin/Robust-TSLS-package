@@ -52,7 +52,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z, unit_covariates = NULL, time_
   
   
   
-  robust_estimate <- list(result=basic_res, index_sub=index_sub, state_names=state_names)
+  robust_estimate <- list(result = basic_res, index_sub = index_sub, state_names = state_names)
   
   class(robust_estimate) <- "robust_estimate"
   
