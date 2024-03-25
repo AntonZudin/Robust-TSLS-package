@@ -4,7 +4,7 @@
 #' @param Z an nx1 vector of an aggregate instrument.
 #' @param index_sub an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.
 #' @param T_0, the size of the learning period.
-#' @param state_names an nx1 vector with state names. It is used in plot_1 function. 
+#' @param unit_names an nx1 vector with unit names. It is used only in plot_1 function. 
 #' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.
 #' @param seed, seed to set.
@@ -15,7 +15,7 @@
 
 
 robust_estimate <- function(Y_mat_or, W_mat_or, Z, index_sub = NULL, T_0 = NULL, 
-                            state_names = NULL, time_column = TRUE, seed = 1234){
+                            unit_names = NULL, time_column = TRUE, seed = 1234){
   
   if (time_column == TRUE) {
     Y_mat_or <- as.matrix(Y_mat_or)
