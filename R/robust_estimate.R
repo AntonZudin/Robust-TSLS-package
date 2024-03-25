@@ -42,7 +42,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z, index_sub = NULL, T_0 = NULL,
   }
   
   
-  pi_unit <- ((W_mat_or%*%(Z-mean(Z))) / T) / var_biased(Z) #calculate D_i  
+  pi_unit <- ((W_mat_or %*% (Z-mean(Z))) / T) / var_biased(Z) #calculate D_i  
   
   
   

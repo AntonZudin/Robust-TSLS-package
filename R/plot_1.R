@@ -10,20 +10,17 @@
 
 plot_1 <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
   
-print
-  
-  
   basic_res <- robust_estimate$result
   
   
   tau_or <- basic_res[[2]][1,3]
-  se_or <- basic_res[[3]][1]
-  se_or_cor <- basic_res[[3]][4]
+  #se_or <- basic_res[[3]][1]
+  se_or_cor <- basic_res[[3]][1]
   tau_rob <- basic_res[[2]][2,3]
-  se_rob <- basic_res[[3]][2]
-  se_rob_cor <- basic_res[[3]][5]
-  se_alt_cor <- basic_res[[3]][6]
-  se_alt_cor/se_rob_cor-1
+  #se_rob <- basic_res[[3]][2]
+  se_rob_cor <- basic_res[[3]][2]
+  #se_alt_cor <- basic_res[[3]][3]
+  #se_alt_cor/se_rob_cor-1
   
   
   
@@ -59,15 +56,15 @@ print
   
   
   ### Computing coordinates for blue triangles
-  x_or_p <- mean(abs(omega_or_norm[index_pos_or])*fs_coeffs_full[index_pos_or])/mean(abs(omega_or_norm[index_pos_or]))
-  x_or_n <- mean(abs(omega_or_norm[!index_pos_or])*fs_coeffs_full[!index_pos_or])/mean(abs(omega_or_norm[!index_pos_or]))
-  y_or_p <- mean(abs(omega_or_norm[index_pos_or])*rf_coeffs_full[index_pos_or])/mean(abs(omega_or_norm[index_pos_or]))
-  y_or_n <- mean(abs(omega_or_norm[!index_pos_or])*rf_coeffs_full[!index_pos_or])/mean(abs(omega_or_norm[!index_pos_or]))
+  x_or_p <- mean(abs(omega_or_norm[index_pos_or])*fs_coeffs_full[index_pos_or]) / mean(abs(omega_or_norm[index_pos_or]))
+  x_or_n <- mean(abs(omega_or_norm[!index_pos_or])*fs_coeffs_full[!index_pos_or]) / mean(abs(omega_or_norm[!index_pos_or]))
+  y_or_p <- mean(abs(omega_or_norm[index_pos_or])*rf_coeffs_full[index_pos_or]) / mean(abs(omega_or_norm[index_pos_or]))
+  y_or_n <- mean(abs(omega_or_norm[!index_pos_or])*rf_coeffs_full[!index_pos_or]) / mean(abs(omega_or_norm[!index_pos_or]))
   
-  x_p <- mean(abs(omega_rob_norm[index_pos_rob])*fs_coeffs_post[index_pos_rob])/mean(abs(omega_rob_norm[index_pos_rob]))
-  x_n <- mean(abs(omega_rob_norm[!index_pos_rob])*fs_coeffs_post[!index_pos_rob])/mean(abs(omega_rob_norm[!index_pos_rob]))
-  y_p <- mean(abs(omega_rob_norm[index_pos_rob])*rf_coeffs_post[index_pos_rob])/mean(abs(omega_rob_norm[index_pos_rob]))
-  y_n <- mean(abs(omega_rob_norm[!index_pos_rob])*rf_coeffs_post[!index_pos_rob])/mean(abs(omega_rob_norm[!index_pos_rob]))
+  x_p <- mean(abs(omega_rob_norm[index_pos_rob])*fs_coeffs_post[index_pos_rob]) / mean(abs(omega_rob_norm[index_pos_rob]))
+  x_n <- mean(abs(omega_rob_norm[!index_pos_rob])*fs_coeffs_post[!index_pos_rob]) / mean(abs(omega_rob_norm[!index_pos_rob]))
+  y_p <- mean(abs(omega_rob_norm[index_pos_rob])*rf_coeffs_post[index_pos_rob]) / mean(abs(omega_rob_norm[index_pos_rob]))
+  y_n <- mean(abs(omega_rob_norm[!index_pos_rob])*rf_coeffs_post[!index_pos_rob]) / mean(abs(omega_rob_norm[!index_pos_rob]))
   
   
   
@@ -84,7 +81,7 @@ print
   abline(a = weighted.mean(rf_coeffs_full - tau_or*fs_coeffs_full, w = abs(omega_or_norm)), b =tau_or, lty = 2, col = 'grey')
   points( cbind(c(x_or_p,x_or_n),c(y_or_p,y_or_n)),cex = 2,pch = 2, col = 'blue' )
   legend( x= x_p, y = y_n-0.3, legend = substitute(paste(hat(tau)[TSLS], ' = ', tau_or, ', ', hat(se)(hat(tau)[TSLS]), ' = ', se_or_cor),
-                                                   list(tau_or= round(tau_or,2),se_or_cor = round(se_or_cor,2))),cex=1)
+                                                   list(tau_or = round(tau_or,2), se_or_cor = round(se_or_cor,2))), cex=1)
   dev.off()
   
   
@@ -101,8 +98,8 @@ print
   abline(a = weighted.mean(rf_coeffs_post - tau_rob*fs_coeffs_post,w = abs(omega_rob_norm)), b =tau_rob,lty = 2, col = 'grey')
   points( cbind(c(x_p,x_n),c(y_p,y_n)),cex = 2,pch = 2, col = 'blue' )
   legend( x= x_p+0.3, y = y_n-0.3, legend = substitute(paste(hat(tau)[rob], ' = ', tau_rob, ', ', hat(se)(hat(tau)[rob]), ' = ', se_rob_cor),
-                                                       list(tau_rob= round(tau_rob,2),se_rob_cor = round(se_rob_cor,2))),cex=1)
-  
+                                                       list(tau_rob = round(tau_rob,2), se_rob_cor = round(se_rob_cor,2))), cex=1)
+
   dev.off()
 
 }
