@@ -52,10 +52,10 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,
 
 	D_b <- (1/T_0) * W_b[,1:T_0] %*% (art_Z[1:T_0] - mean(art_Z[1:T_0])) / var(art_Z[1:T_0])
 	
-	omega_rob_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0],D_unit =D_b, X_unit =matrix(1,nrow = n, ncol = 1),
-	                                psi=matrix(1,nrow = T_0, ncol = 1),lambda = 'basic')
-	omega_or_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0],D_unit =D_b, X_unit =matrix(1,nrow = n, ncol = 1), 
-	                                psi=matrix(1,nrow = T_0, ncol = 1),lambda = 100000)
+	omega_rob_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0],D_unit = D_b, unit_covariates = NULL,
+	                                time_covariates = NULL, lambda = 'basic')
+	omega_or_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0], D_unit = D_b, unit_covariates = NULL, 
+	                               time_covariates = NULL, lambda = 100000)
 	
 	### Aggregates
 	
