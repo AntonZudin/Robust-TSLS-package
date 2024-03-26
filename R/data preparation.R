@@ -16,8 +16,8 @@ data_preparation <- function(data_mat, rank){
   T <- dim(data_mat)[2]
   
   svd_data_mat <- svd(data_mat)
-  #factor_unit <- as.matrix(svd_data_mat$u[,1:rank] * sqrt(n))
-  #factor_time <- as.matrix(svd_data_mat$v[,1:rank] * sqrt(T))
+  factor_unit <- as.matrix(svd_data_mat$u[,1:rank] * sqrt(n))
+  factor_time <- as.matrix(svd_data_mat$v[,1:rank] * sqrt(T))
   
   magnitude <- svd_data_mat$d[1:rank] / sqrt(n * T)
   L_mat_orig <- factor_unit %*% diag(magnitude, nrow = rank, ncol = rank) %*%
