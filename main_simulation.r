@@ -105,7 +105,7 @@ sigma_fs <- sqrt(size_E_w)
 ### Simulation 1: results
 B <- 1000
 
-start_time <- Sys.time()
+
 
 #simulation 5 for Table 2
 n_sim_5 <- 100
@@ -188,8 +188,7 @@ colnames(table_res_1) <- c('RMSE','Bias')
 
 table_full_tau_0 <- cbind(table_res_1,table_res_2,table_res_3,table_res_4)
 
-end_time <- Sys.time()
-end_time - start_time
+
 
 xtable(table_full_tau_0, digits = 2)
 

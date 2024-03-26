@@ -24,7 +24,7 @@ my_density_function <- function(x, K, deg){
   data_matrix <- splines::ns(centers, df = deg)
   pois_reg_res <- glm(counts~data_matrix, family = 'poisson')
   freq_pois <- exp(pois_reg_res$linear.predictors)
-  dens_pois <- freq_pois/scale
+  dens_pois <- freq_pois / scale
   
   
   return(cbind(centers,freq_pois,dens_pois))
