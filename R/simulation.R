@@ -26,7 +26,7 @@
 
 simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3, 
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, B = 1000,
-                       S = 300, test = FALSE, K = 300, deg = 4, height = 12*0.75, width = 9*0.75, folder = NULL, seed = 1234){
+                       S = 300, test = FALSE, K = 300, deg = 4, height = 9*0.75, width = 16*0.75, folder = NULL, seed = 1234){
   
   set.seed(seed)
   
