@@ -177,8 +177,13 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   dens_tsls_des_2 <- my_density_function(results_sim_2[,6], K = K,deg = deg)
   
   
-  pdf(file = "./plots/fig_dens_full_orig.pdf", width = 16*0.75,
-      height = 9*0.75) 
+  if (is.null(folder)){
+    pdf('fig_dens_full_orig.pdf', width = width, height = height)
+  } else{
+    dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
+    pdf(dir_2, width = width, height = height)
+  }
+  
   par(mfrow=c(1,2)) 
   
   plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
