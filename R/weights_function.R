@@ -22,7 +22,17 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   n <- dim(Y_mat)[1]
   
   
+  if (is.null(unit_covariates)) {
+    unit_covariates <-  matrix(1, ncol = 1, nrow = n)
+  } else {
+    unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
+  }
   
+  if (is.null(time_covariates)) {
+    time_covariates <-  matrix(1, ncol = 1, nrow = T)
+  } else {
+    time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
+  }
   
   dim_x <- dim(unit_covariates)[2]
 
