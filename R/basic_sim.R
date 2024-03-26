@@ -1,31 +1,29 @@
-#' Calculate the necessary for .
+#' Calculate the necessary for the simulation.
 #'
-#' @param F_mat_W an nxT two-way fixed effects matrix for W.
-#' @param L_mat_W an nxT generalized fixed effects (low-rank) matrix for W.
-#' @param F_mat_Y an nxT two-way fixed effects matrix for Y.
-#' @param L_mat_Y an nxT generalized fixed effects (low-rank) matrix for W.
-#' @param cov_mat_fs 
-#' @param cov_mat_rf 
-#' @param pi_unit 
-#' @param theta_w the unobserved aggregate confounder coefficient 
-#' @param theta_y the unobserved aggregate confounder coefficient  
-#' @param tau the real tau
-#' @param rho_agg
-#' @param rho_cross
-#' @param T_0
-#' @param Z_fit
-#' @param test If true
-#' @param S
+#' @param F_mat_W a nxT two-way fixed effects matrix for W (endogenous treatment).
+#' @param L_mat_W a nxT generalized fixed effects (low-rank) matrix for W (endogenous treatment).
+#' @param F_mat_Y a nxT two-way fixed effects matrix for Y (outcome).
+#' @param L_mat_Y a nxT generalized fixed effects (low-rank) matrix for Y (outcome).
+#' @param cov_mat_fs a covarience matrix for W (endogenous treatment) noise.
+#' @param cov_mat_rf a covarience matrix 
+#' @param pi_unit a nx1 vector of exposure.
+#' @param theta_w an exposure to unobserved confounder for W (endogenous treatment).
+#' @param theta_y an exposure to unobserved confounder for Y (outcome).
+#' @param tau the original point estimate of tau. It is used for data generation. 
+#' @param rho_agg 
+#' @param rho_cross 
+#' @param T_0 the size of the learning period.
+#' @param Z_fit the fitted ARIMA model to the data Z (instrument).
+#' @param test If true, compute the tests for the coverage rates.
+#' @param S if 'test' == TRUE, the number of simulations for standard error estimation.
 #'
-#' @return A list with weights, coefficients, standard errors, delta and pi and aggregated W, Y (observed and predicted).
-#'
+#' @return A list with simulation results.
 #' @export
-#' 
 
 
 
 basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, 
-                      cov_mat_rf,pi_unit,theta_w,theta_y, tau, 
+                      cov_mat_rf, pi_unit, theta_w, theta_y, tau, 
                       rho_agg, rho_cross, T_0, Z_fit, test = FALSE, S = 300){
 				
 	
@@ -36,7 +34,7 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,
 	T <- dim(F_mat_Y)[2]
 
 	art_Z <- as.numeric(simulate(Z_fit, T))
-	art_H <- sqrt((1-rho_agg^2))*as.numeric(simulate(Z_fit,T)) +rho_agg*art_Z
+	art_H <- sqrt((1-rho_agg^2))*as.numeric(simulate(Z_fit,T)) + rho_agg*art_Z
 	
 	noise_fs <- rmvnorm(n,sigma = cov_mat_fs)
 	noise_rf <- rmvnorm(n,sigma = cov_mat_rf)*sqrt((1-rho_cross^2)) + noise_fs*rho_cross 
@@ -112,7 +110,7 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,
 	
 		results_sd <- matrix(0, ncol = 2, nrow = S)
 	
-		for(j in 1:S){
+		for(j in 1: S){
 	
 			art_Z_j <- as.numeric(simulate(art_Z_fit, T - T_0))
 			art_Z_dem_j <- art_Z_j - mean(art_Z_j)

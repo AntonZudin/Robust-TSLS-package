@@ -12,7 +12,7 @@ data_preparation(data_mat, rank)
 \item{rank}{the rank of the low-rank matrix approximation with SVD.}
 }
 \value{
-A list with generalized fixed effects (low-rank matrix), fixed effects matrix ,  ,unit fixed effects and .
+A list with generalized fixed effects (low-rank matrix), two-way fixed effects matrix, residuals matrix, unit fixed effects and factor loadings.
 }
 \description{
 Data preparation for simulations.

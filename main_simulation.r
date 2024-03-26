@@ -225,19 +225,19 @@ dens_our_des_2 <- my_density_function(results_sim_2[,5], K = 300,deg = 4)
 dens_tsls_des_2 <- my_density_function(results_sim_2[,6], K = 300,deg = 4)
 
 
-pdf(file = "./plots/fig_dens_full_orig.pdf",   width = 16*0.75,
+pdf(file = "./plots/fig_dens_full_orig.pdf", width = 16*0.75,
    	 height = 9*0.75) 
 par(mfrow=c(1,2)) 
 
-plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty =1,xlab = 'estimate',
+plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
 ylab = 'Density',main = 'No unobserved shocks')
-lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty =2)
+lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty = 2)
 abline(v = 0,lwd = 1,lty =2)
 legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
 
-plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5),type = 'l',lty =1,xlab = 'estimate',
+plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5, 1.5), type = 'l',lty = 1,xlab = 'estimate',
 ylab = 'Density',main = 'Unobserved shocks')
-lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty =2)
+lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty = 2)
 abline(v = 0,lwd = 1,lty =2)
 legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
 

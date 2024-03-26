@@ -1,11 +1,11 @@
 #' Calculate the necessary.
 #'
-#' @param Y_mat an nxT matrix of outcome.
-#' @param W_mat an nxT matrix of endogenous treatment.
-#' @param Z an nx1 vector of an aggregate instrument.
+#' @param Y_mat Y, the nxT matrix of outcome.
+#' @param W_mat W, the nxT matrix of endogenous treatment.
+#' @param Z Z, the nx1 vector of an aggregate instrument.
 #' @param unit_covariates unit covariate(s).
 #' @param time_covariates time covariate(s).
-#' @param D an nx1 vector of exposure.
+#' @param D the nx1 vector of exposure.
 #' @param T_0 the size of the learning period.
 #' @param seed a seed to set.
 #'

@@ -2,15 +2,15 @@
 % Please edit documentation in R/weights_function.R
 \name{weights_function}
 \alias{weights_function}
-\title{Calculate the original and robust weights}
+\title{Calculate the weights}
 \usage{
 weights_function(
   Y_mat,
   W_mat,
   Z_agg,
   D_unit,
-  X_unit = NULL,
-  psi = NULL,
+  unit_covariates = NULL,
+  time_covariates = NULL,
   lambda = "basic"
 )
 }
@@ -23,15 +23,15 @@ weights_function(
 
 \item{D_unit}{an nx1 vector of exposure.}
 
-\item{X_unit}{unit covariate.}
+\item{unit_covariates}{unit covariate(s).}
 
-\item{psi}{aggregate covariates.}
+\item{time_covariates}{time covariate(s).}
 
 \item{lambda}{regularization hyperparameter.}
 }
 \value{
-A list with original and robust weight vectors.
+A list with weights.
 }
 \description{
-Calculate the original and robust weights
+Calculate the weights
 }

@@ -4,20 +4,29 @@
 \alias{basic_analysis}
 \title{Calculate the necessary.}
 \usage{
-basic_analysis(Y_mat, W_mat, Z, X_unit, psi, D, T_0, seed = 1234)
+basic_analysis(
+  Y_mat,
+  W_mat,
+  Z,
+  unit_covariates,
+  time_covariates,
+  D,
+  T_0,
+  seed = 1234
+)
 }
 \arguments{
-\item{Y_mat}{an nxT matrix of outcome.}
+\item{Y_mat}{Y, the nxT matrix of outcome.}
 
-\item{W_mat}{an nxT matrix of endogenous treatment.}
+\item{W_mat}{W, the nxT matrix of endogenous treatment.}
 
-\item{Z}{an nx1 vector of an aggregate instrument.}
+\item{Z}{Z, the nx1 vector of an aggregate instrument.}
 
-\item{X_unit}{unit covariate.}
+\item{unit_covariates}{unit covariate(s).}
 
-\item{psi}{aggregate covariates.}
+\item{time_covariates}{time covariate(s).}
 
-\item{D}{an nx1 vector of exposure.}
+\item{D}{the nx1 vector of exposure.}
 
 \item{T_0}{the size of the learning period.}
 

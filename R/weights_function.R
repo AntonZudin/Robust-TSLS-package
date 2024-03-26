@@ -14,7 +14,9 @@
 
 
 
-weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, unit_covariates = NULL, time_covariates = NULL, lambda = 'basic') {
+weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, 
+                             unit_covariates = NULL, time_covariates = NULL, 
+                             lambda = 'basic') {
   
   T <- dim(Y_mat)[2]
   n <- dim(Y_mat)[1]

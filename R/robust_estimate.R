@@ -3,7 +3,7 @@
 #' @param W_mat_or an nxT matrix of endogenous treatment.
 #' @param Z an nx1 vector of an aggregate instrument.
 #' @param index_sub an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.
-#' @param T_0, the size of the learning period.
+#' @param T_0 the size of the learning period.
 #' @param unit_names an nx1 vector with unit names. It is used only in plot_1 function. 
 #' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.

@@ -4,7 +4,14 @@
 \alias{plot_2}
 \title{Draw 2 time-series plots of aggregated data for original and robust weights.}
 \usage{
-plot_2(robust_estimate, T_0, start_year = 1, height = 9, width = 16)
+plot_2(
+  robust_estimate,
+  T_0,
+  start_year = 1,
+  folder = NULL,
+  height = 9,
+  width = 16
+)
 }
 \arguments{
 \item{robust_estimate}{The object to use for building the plot.}
@@ -13,11 +20,11 @@ plot_2(robust_estimate, T_0, start_year = 1, height = 9, width = 16)
 
 \item{start_year}{The starting year in the plot's x-axis.}
 
+\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
+
 \item{height}{The height of the plot.}
 
 \item{width}{The width of the plot.}
-
-\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
 }
 \description{
 Solid lines represent aggregated Y_t and W_t. Dashed ones represent OLS predictions of the aggregate data with the instrument.

@@ -8,9 +8,11 @@ robust_estimate(
   Y_mat_or,
   W_mat_or,
   Z,
+  unit_covariates = NULL,
+  time_covariates = NULL,
   index_sub = NULL,
   T_0 = NULL,
-  state_names = NULL,
+  unit_names = NULL,
   time_column = TRUE,
   seed = 1234
 )
@@ -24,9 +26,9 @@ robust_estimate(
 
 \item{index_sub}{an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.}
 
-\item{T_0, }{the size of the learning period.}
+\item{T_0}{the size of the learning period.}
 
-\item{state_names}{an nx1 vector with state names. It is used in plot_1 function.}
+\item{unit_names}{an nx1 vector with unit names. It is used only in plot_1 function.}
 
 \item{time_column}{If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.}
 
