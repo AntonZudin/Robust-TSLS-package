@@ -108,7 +108,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   theta_w_equal_0 <- matrix(0,ncol = 1, nrow = n)
-  theta_y_equal_0 <-  theta_w
+  theta_y_equal_0 <- theta_w
   
   results_sim_2 <- do.call(rbind,lapply(1:B, function(b) { 
     estimate <- basic_sim(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
@@ -166,7 +166,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
                 mean(abs(results_sim_4[,8]) < qnorm(0.975)))
     
     #### Table 2
-    xtable(rbind(row_rob, row_or),digit = 2)
+    print(xtable(rbind(row_rob, row_or),digit = 2))
   }
   
   
