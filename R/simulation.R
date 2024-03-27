@@ -182,7 +182,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   if (is.null(folder)){
     pdf('fig_dens_full_orig.pdf', width = width, height = height)
   } else{
-    dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
+    dir <- paste(folder, "fig_dens_full_orig.pdf", sep = "/")
     pdf(dir_2, width = width, height = height)
   }
   
