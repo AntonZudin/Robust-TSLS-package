@@ -93,7 +93,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   ### Simulations
-  B <- 1000
+
   
   results_sim_4 <- do.call(rbind,lapply(1:B, function(b) { 
     estimate <- basic_sim(F_mat_W, L_mat_W ,F_mat_Y, L_mat_Y, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
