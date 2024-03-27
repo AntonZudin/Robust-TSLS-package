@@ -40,7 +40,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   Z_dem <- Z - mean(Z)
   
   
-  
+  ## Subtracting effects
   tau <- as.numeric(t((pi_unit-mean(pi_unit)))%*%Y_mat_or%*%Z_dem /
                       t((pi_unit-mean(pi_unit)))%*%W_mat_or%*%Z_dem)
   
@@ -149,7 +149,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   #### Table 1
   table_full_tau_0 <- cbind(table_res_1,table_res_2,table_res_3,table_res_4)
-  xtable(table_full_tau_0, digits = 2)
+  print(xtable(table_full_tau_0, digits = 2))
   
   
   ### Coverage rates
