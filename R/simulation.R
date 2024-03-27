@@ -50,13 +50,13 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   ### Preparations
-  results_Y <- data_preparation(Y_mat_or, rank)
+  results_Y <- data_preparation(Y_mat, rank)
   L_mat_Y <- results_Y[[1]]
   F_mat_Y <- results_Y[[2]]
   E_mat_Y <- results_Y[[3]]
   
   
-  results_W <-data_preparation(W_mat_or, rank)
+  results_W <-data_preparation(W_mat, rank)
   L_mat_W <- results_W[[1]]
   F_mat_W <- results_W[[2]]
   E_mat_W <- results_W[[3]]
