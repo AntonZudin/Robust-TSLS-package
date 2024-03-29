@@ -8,7 +8,7 @@ The current version of the package can be installed from source using devtools.
  devtools::install_github("AntonZudin/Robust-TSLS-package")
 ```
 
-### Example
+### Estimation
 
 ```R
 library(RobustTSLS)
@@ -32,4 +32,23 @@ robust_estimates <- robust_estimate(Y_mat_or, W_mat_or, Z, index_sub, T_0,
 plot_3(robust_estimates)
 plot_1(robust_estimates)
 plot_2(robust_estimates, T_0, 1968)
+```
+
+### Simulation
+
+``` R
+library(RobustTSLS)
+data('nak_out_data')
+
+Y_mat_or <- data_nak[[1]][-1,]
+W_mat_or <- data_nak[[2]][-1,]
+Z <- data_nak[[3]]
+start_year <- 1968
+state_names <- data_nak[[4]][-1]
+T <- dim(W_mat_or)[2]
+T_0 <- 10
+
+simulation(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3, 
+          rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, B = 1000,
+          S = 300, test = FALSE, K = 300, deg = 4, height = 9*0.75, width = 16*0.75, folder = NULL, seed = 1234)
 ```
