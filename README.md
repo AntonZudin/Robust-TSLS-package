@@ -40,11 +40,11 @@ plot_2(robust_estimates, T_0, 1968)
 library(RobustTSLS)
 data('nak_out_data')
 
-Y_mat_or <- data_nak[[1]][-1,]
-W_mat_or <- data_nak[[2]][-1,]
+Y_mat_or <- data_nak[[1]]
+W_mat_or <- data_nak[[2]]
 Z <- data_nak[[3]]
 start_year <- 1968
-state_names <- data_nak[[4]][-1]
+state_names <- data_nak[[4]]
 T <- dim(W_mat_or)[2]
 T_0 <- 10
 
