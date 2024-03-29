@@ -203,8 +203,5 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   dev.off()
- 
-  
-  return(list(results_sim_1,results_sim_2, results_sim_3, results_sim_4) )
   
 }
