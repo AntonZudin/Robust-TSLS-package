@@ -86,8 +86,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   bias_scale_y <- 3
   theta_w <- scale_str*bias_scale_w*(rho_theta_w*pi_unit  + sqrt(1-(rho_theta_w)^2)*rnorm(n)*sd(pi_unit))
   theta_y <- scale_str*bias_scale_y*(rho_theta_y*pi_unit  + sqrt(1-(rho_theta_y)^2)*rnorm(n)*sd(pi_unit)) 
-  print(theta_w)
-  print(theta_y)
+
   
   
   sigma_rf <- sqrt(size_E_y)
@@ -109,17 +108,17 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   
-  theta_w_equal_0 <- matrix(0,ncol = 1, nrow = n)
-  theta_y_equal_0 <- theta_w
+  theta_w <- matrix(0,ncol = 1, nrow = n)
+  theta_y <- theta_w
   
   results_sim_2 <- do.call(rbind,lapply(1:B, function(b) { 
     estimate <- basic_sim(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
-                          theta_w_equal_0, theta_y_equal_0, tau, rho_agg, rho_cross,T_0, Z_fit, test = test, S = S)
+                          theta_w, theta_y, tau, rho_agg, rho_cross,T_0, Z_fit, test = test, S = S)
   }))
   
   results_sim_1 <- do.call(rbind,lapply(1:B, function(b) { 
     estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
-                          theta_w_equal_0, theta_y_equal_0, tau, rho_agg, rho_cross, T_0, Z_fit, test = test, S = S)
+                          theta_w, theta_y, tau, rho_agg, rho_cross, T_0, Z_fit, test = test, S = S)
   }))
   
   
@@ -206,6 +205,6 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   dev.off()
  
   
-  
+  return(list(results_sim_1,results_sim_2, results_sim_3, results_sim_4) )
   
 }
