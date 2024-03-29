@@ -87,7 +87,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   theta_w <- scale_str*bias_scale_w*(rho_theta_w*pi_unit  + sqrt(1-(rho_theta_w)^2)*rnorm(n)*sd(pi_unit))
   theta_y <- scale_str*bias_scale_y*(rho_theta_y*pi_unit  + sqrt(1-(rho_theta_y)^2)*rnorm(n)*sd(pi_unit)) 
   print(theta_w)
-  print(theta_y))
+  print(theta_y)
   
   
   sigma_rf <- sqrt(size_E_y)
