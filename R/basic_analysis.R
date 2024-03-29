@@ -17,7 +17,8 @@
 
 
 
-basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D, T_0, seed = 1234) {
+basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, 
+                           D, T_0, seed = 1234) {
   
   set.seed(seed)
   
@@ -26,22 +27,22 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   T <- dim(Y_mat)[2]
   
   
-  if (is.null(unit_covariates)) {
-    unit_covariates <-  matrix(1, ncol = 1, nrow = n)
-  } else {
-    unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
-  }
+  #if (is.null(unit_covariates)) {
+  #  unit_covariates <-  matrix(1, ncol = 1, nrow = n)
+  #} else {
+  #  unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
+  #}
   
-  if (is.null(time_covariates)) {
-    time_covariates <-  matrix(1, ncol = 1, nrow = T)
-  } else {
-    time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
-  }
+  #if (is.null(time_covariates)) {
+  #  time_covariates <-  matrix(1, ncol = 1, nrow = T)
+  #} else {
+  #  time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
+  #}
   
   ## basic analysis
   
   omega_or <-  weights_function(Y_mat,W_mat,Z, D_unit = D, unit_covariates = unit_covariates,
-                                time_covariates = time_covariates, add_const = FALSE, lambda = 100000)
+                                time_covariates = time_covariates, add_const = TRUE, lambda = 100000)
   
   Z_dem <- lm(Z~time_covariates)$residuals #substitute expectation 
   tau <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(t(omega_or)%*%W_mat%*%Z_dem))
@@ -58,7 +59,7 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   time_covariates_pre <- time_covariates[1:T_0,]
   
   omega_rob <- weights_function(Y_pre, W_pre,Z_pre, D_unit = D, unit_covariates = unit_covariates, 
-                                time_covariates = time_covariates_pre, add_const = FALSE)
+                                time_covariates = time_covariates_pre, add_const = TRUE)
   
   
   Y_post <- Y_mat[,(T_0+1):T]

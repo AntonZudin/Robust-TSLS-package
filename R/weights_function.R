@@ -26,15 +26,13 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   
   if (add_const){
     unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
-  } else{
-    unit_covariates <- matrix(unit_covariates, nrow = n)
-  }
-  
-  if (add_const){
     time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(unit_covariates, nrow = T))
   } else{
+    unit_covariates <- matrix(unit_covariates, nrow = n)
     time_covariates <- matrix(unit_covariates, nrow = T)
   }
+  
+  
   
   dim_x <- dim(unit_covariates)[2]
 
