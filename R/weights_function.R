@@ -23,7 +23,6 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   n <- dim(Y_mat)[1]
   
   
-  
   if (add_const){
     if (is.null(unit_covariates)){
       unit_covariates <- matrix(1, ncol = 1, nrow = n)
@@ -48,7 +47,6 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   }
   
   
-  
   dim_x <- dim(unit_covariates)[2]
 
   
@@ -58,7 +56,6 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   
   Z_agg <- matrix(Z_agg, nrow = T)
   Z_full <- cbind(time_covariates, Z_agg)
-  print(Z_full)
   M_z <- diag(T) - Z_full %*% solve(t(Z_full) %*% Z_full) %*% t(Z_full)
   Y_z <- Y_dm %*% M_z
   W_z <- W_dm %*% M_z
