@@ -5,6 +5,7 @@
 #' @param D_unit an nx1 vector of exposure.
 #' @param unit_covariates unit covariate(s).
 #' @param time_covariates time covariate(s).
+#' @param add_const If true, add constant as a unit and time covariate.
 #' @param lambda regularization hyperparameter.
 #' 
 #' @return A list with weights.
@@ -16,22 +17,23 @@
 
 weights_function <- function(Y_mat, W_mat, Z_agg, D_unit, 
                              unit_covariates = NULL, time_covariates = NULL, 
-                             lambda = 'basic') {
+                             add_const = TRUE, lambda = 'basic') {
   
   T <- dim(Y_mat)[2]
   n <- dim(Y_mat)[1]
   
   
-  if (is.null(unit_covariates)) {
-    unit_covariates <-  matrix(1, ncol = 1, nrow = n)
-  } else {
+  
+  if (add_const){
     unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, nrow = n))
+  } else{
+    unit_covariates <- matrix(unit_covariates, nrow = n)
   }
   
-  if (is.null(time_covariates)) {
-    time_covariates <-  matrix(1, ncol = 1, nrow = T)
-  } else {
-    time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, nrow = T))
+  if (add_const){
+    time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(unit_covariates, nrow = T))
+  } else{
+    time_covariates <- matrix(unit_covariates, nrow = T)
   }
   
   dim_x <- dim(unit_covariates)[2]

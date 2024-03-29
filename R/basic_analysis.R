@@ -41,7 +41,7 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   ## basic analysis
   
   omega_or <-  weights_function(Y_mat,W_mat,Z, D_unit = D, unit_covariates = unit_covariates,
-                                time_covariates = time_covariates, lambda = 100000)
+                                time_covariates = time_covariates, add_const = FALSE, lambda = 100000)
   
   Z_dem <- lm(Z~time_covariates)$residuals #substitute expectation 
   tau <- as.numeric(t(omega_or)%*%Y_mat%*%Z_dem/(t(omega_or)%*%W_mat%*%Z_dem))
@@ -58,7 +58,7 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, D,
   time_covariates_pre <- time_covariates[1:T_0,]
   
   omega_rob <- weights_function(Y_pre, W_pre,Z_pre, D_unit = D, unit_covariates = unit_covariates, 
-                                time_covariates = time_covariates_pre)
+                                time_covariates = time_covariates_pre, add_const = FALSE)
   
   
   Y_post <- Y_mat[,(T_0+1):T]
