@@ -5,20 +5,18 @@
 #' @param Z n nx1 vector of an aggregate instrument.
 #' @param share_t the share of the learning period.
 #' @param share_rank the share of the rank of generalized fixed effects matrix in total rank.
-#' @param rho_agg 
-#' @param rho_theta_w 
-#' @param rho_theta_y 
+#' @param rho_agg the share of Z_t during H_t generation.
+#' @param rho_theta_w the exposure of W (endogenous treatment) to unobserved confounder. 
+#' @param rho_theta_y the exposure of Y (outcome) to unobserved confounder. 
 #' @param B number of replications for each design of simulation.
 #' @param S if 'test' == TRUE, the number of simulations for standard error estimation.
 #' @param test If true, compute the tests for the coverage rates.
 #' @param K number of domain splits. It is used in density plot.
 #' @param deg degrees of freedom for natural cubic splines. It is used in density plot.
-#' @param height
-#' @param width
+#' @param height the height of the plot.
+#' @param width the width of the plot.
 #' @param folder The folder where the plots are saved. NULL stands for the working directory.
 #' @param seed seed to set.
-#' 
-#' @return 
 #'
 #' @export
 

@@ -34,7 +34,7 @@ basic_sim(
 
 \item{cov_mat_fs}{a covarience matrix for W (endogenous treatment) noise.}
 
-\item{cov_mat_rf}{a covarience matrix}
+\item{cov_mat_rf}{a covarience matrix for a part of Y (outcome) noise.}
 
 \item{pi_unit}{a nx1 vector of exposure.}
 
@@ -44,9 +44,9 @@ basic_sim(
 
 \item{tau}{the original point estimate of tau. It is used for data generation.}
 
-\item{rho_agg}{}
+\item{rho_agg}{the share of Z_t during H_t generation.}
 
-\item{rho_cross}{}
+\item{rho_cross}{the share of W (endogenous treatment) noise in Y noise.}
 
 \item{T_0}{the size of the learning period.}
 

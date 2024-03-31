@@ -11,6 +11,7 @@ weights_function(
   D_unit,
   unit_covariates = NULL,
   time_covariates = NULL,
+  add_const = TRUE,
   lambda = "basic"
 )
 }
@@ -26,6 +27,8 @@ weights_function(
 \item{unit_covariates}{unit covariate(s).}
 
 \item{time_covariates}{time covariate(s).}
+
+\item{add_const}{If true, add constant as a unit and time covariate.}
 
 \item{lambda}{regularization hyperparameter.}
 }

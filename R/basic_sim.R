@@ -5,13 +5,13 @@
 #' @param F_mat_Y a nxT two-way fixed effects matrix for Y (outcome).
 #' @param L_mat_Y a nxT generalized fixed effects (low-rank) matrix for Y (outcome).
 #' @param cov_mat_fs a covarience matrix for W (endogenous treatment) noise.
-#' @param cov_mat_rf a covarience matrix 
+#' @param cov_mat_rf a covarience matrix for a part of Y (outcome) noise.
 #' @param pi_unit a nx1 vector of exposure.
 #' @param theta_w an exposure to unobserved confounder for W (endogenous treatment).
 #' @param theta_y an exposure to unobserved confounder for Y (outcome).
 #' @param tau the original point estimate of tau. It is used for data generation. 
-#' @param rho_agg 
-#' @param rho_cross 
+#' @param rho_agg the share of Z_t during H_t generation.
+#' @param rho_cross the share of W (endogenous treatment) noise in Y noise.
 #' @param T_0 the size of the learning period.
 #' @param Z_fit the fitted ARIMA model to the data Z (instrument).
 #' @param test If true, compute the tests for the coverage rates.

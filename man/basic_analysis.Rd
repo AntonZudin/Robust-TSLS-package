@@ -10,6 +10,7 @@ basic_analysis(
   Z,
   unit_covariates,
   time_covariates,
+  add_const,
   D,
   T_0,
   seed = 1234
@@ -25,6 +26,8 @@ basic_analysis(
 \item{unit_covariates}{unit covariate(s).}
 
 \item{time_covariates}{time covariate(s).}
+
+\item{add_const}{If true, add constant as a unit and time covariate.}
 
 \item{D}{the nx1 vector of exposure.}
 
