@@ -15,7 +15,10 @@
 #' @param deg degrees of freedom for natural cubic splines. It is used in density plot.
 #' @param height the height of the plot.
 #' @param width the width of the plot.
-#' @param folder The folder where the plots are saved. NULL stands for the working directory.
+#' @param folder_plot The folder where the plot is saved. NULL stands for the working directory.
+#' @param save_sim If true, the function saves the simulation.
+#' @param folder_sim If 'save_sim' is true, the folder where the simulation is saved. NULL stands for the working directory.
+#' @param sim_name If 'save_sim' is true, the folder where the simulation is saved.
 #' @param seed seed to set.
 #'
 #' @export
@@ -24,7 +27,9 @@
 
 simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3, 
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, B = 1000,
-                       S = 300, test = FALSE, K = 300, deg = 4, height = 9*0.75, width = 16*0.75, folder = NULL, seed = 1234){
+                       S = 300, test = FALSE, K = 300, deg = 4, height = 9*0.75, 
+                       width = 16*0.75, folder_plot = NULL, save_sim = FALSE, 
+                       folder_sim = NULL, sim_name = 'simulation_result',  seed = 1234){
   
   set.seed(seed)
   
@@ -178,10 +183,10 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   dens_tsls_des_2 <- my_density_function(results_sim_2[,6], K = K,deg = deg)
   
   
-  if (is.null(folder)){
+  if (is.null(folder_plot)){
     pdf('fig_dens_full_orig.pdf', width = width, height = height)
   } else{
-    dir <- paste(folder, "fig_dens_full_orig.pdf", sep = "/")
+    dir <- paste(folder_plot, "fig_dens_full_orig.pdf", sep = "/")
     pdf(dir_2, width = width, height = height)
   }
   
@@ -201,5 +206,22 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   
   
   dev.off()
+  
+  
+  if (save_sim) {
+    
+    if (is.null(folder_sim)){
+      
+    #sim_results <- list(results_sim_1, results_sim_2, results_sim_3, results_sim_4)
+    save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
+         file = 'sim_name')
+    } else {
+      dir <- paste(folder_sim, sim_name, sep = '/')
+      save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
+           file = dir)
+    }
+    
+  }
+  
   
 }
