@@ -208,20 +208,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
   dev.off()
   
   
-  if (save_sim) {
-    
-    if (is.null(folder_sim)){
-      
-    #sim_results <- list(results_sim_1, results_sim_2, results_sim_3, results_sim_4)
-    save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
-         file = 'sim_name')
-    } else {
-      dir <- paste(folder_sim, sim_name, sep = '/')
-      save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
-           file = dir)
-    }
-    
-  }
+  
   
   
 }
