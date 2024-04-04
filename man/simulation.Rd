@@ -2,7 +2,7 @@
 % Please edit documentation in R/simulation.R
 \name{simulation}
 \alias{simulation}
-\title{Perform simulations.}
+\title{Perform simulations and present the results.}
 \usage{
 simulation(
   Y_mat_or,
@@ -20,7 +20,10 @@ simulation(
   deg = 4,
   height = 9 * 0.75,
   width = 16 * 0.75,
-  folder = NULL,
+  plot_folder = NULL,
+  save_sim = FALSE,
+  sim_folder = NULL,
+  sim_name = "simulation_result",
   seed = 1234
 )
 }
@@ -55,10 +58,16 @@ simulation(
 
 \item{width}{the width of the plot.}
 
-\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
+\item{plot_folder}{The folder where the plot is saved. NULL stands for the working directory.}
+
+\item{save_sim}{If true, the function saves the simulation.}
+
+\item{sim_folder}{If 'save_sim' is true, the folder where the simulation is saved. NULL stands for the working directory.}
+
+\item{sim_name}{If 'save_sim' is true, the folder where the simulation is saved.}
 
 \item{seed}{seed to set.}
 }
 \description{
-Perform simulations.
+Perform simulations and present the results.
 }

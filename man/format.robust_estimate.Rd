@@ -4,7 +4,7 @@
 \alias{format.robust_estimate}
 \title{Format a robust estimator object.}
 \usage{
-\method{format}{robust_estimate}(estimate)
+\method{format}{robust_estimate.}(estimate)
 }
 \arguments{
 \item{estimate}{The object to format.}

@@ -4,7 +4,7 @@
 \alias{print.robust_estimate}
 \title{Print a robust_estimate object}
 \usage{
-\method{print}{robust_estimate}(estimate)
+\method{print}{robust_estimate.}(estimate)
 }
 \arguments{
 \item{x}{The object to print.}
