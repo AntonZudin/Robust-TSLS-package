@@ -51,7 +51,7 @@ simulation(Y_mat_or, W_mat_or, Z,
            B = 1000, S = 300, 
            test = FALSE, 
            K = 300, deg = 4, 
-           height = 9*0.75, width = 16*0.75, 
+           height = 9 * 0.75, width = 16 * 0.75, 
            plot_folder = NULL, save_sim = TRUE, sim_folder = NULL, 
            sim_name = 'simulation_result', 
            seed = 1234)
