@@ -56,3 +56,11 @@ simulation(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3,
            seed = 1234)
 
 ```
+
+### Simulation resultes from file
+
+```R
+sim_from_file(file_folder = NULL, file_name = 'simulation_result',
+              plot_folder = NULL, K = 300, deg = 4, 
+              height = 9 * 0.75, width = 16 * 0.75)
+```
