@@ -43,16 +43,17 @@ data('nak_out_data')
 Y_mat_or <- data_nak[[1]]
 W_mat_or <- data_nak[[2]]
 Z <- data_nak[[3]]
-start_year <- 1968
-state_names <- data_nak[[4]]
-T <- dim(W_mat_or)[2]
-T_0 <- 10
 
-simulation(Y_mat_or, W_mat_or, Z, share_t = 1/3, share_rank = 1/3, 
+
+simulation(Y_mat_or, W_mat_or, Z, 
+           share_t = 1/3, share_rank = 1/3, 
            rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
-           B = 1000, S = 300, test = FALSE, K = 300, deg = 4, 
-           height = 9*0.75, width = 16*0.75, plot_folder = NULL, 
-           save_sim = TRUE, sim_folder = NULL, sim_name = 'simulation_result', 
+           B = 1000, S = 300, 
+           test = FALSE, 
+           K = 300, deg = 4, 
+           height = 9*0.75, width = 16*0.75, 
+           plot_folder = NULL, save_sim = TRUE, sim_folder = NULL, 
+           sim_name = 'simulation_result', 
            seed = 1234)
 
 ```
