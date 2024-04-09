@@ -14,6 +14,7 @@ The current version of the package can be installed from source using devtools.
 library(RobustTSLS)
 data('nak_out_data')
 
+#Drop inappropriate states
 Y_mat_or <- data_nak[[1]][-1,]
 W_mat_or <- data_nak[[2]][-1,]
 Z <- data_nak[[3]]
