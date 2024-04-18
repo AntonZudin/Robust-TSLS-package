@@ -14,6 +14,7 @@ The current version of the package can be installed from source using devtools.
 library(RobustTSLS)
 data('nak_out_data')
 
+#Drop inappropriate states
 Y_mat_or <- data_nak[[1]][-1,]
 W_mat_or <- data_nak[[2]][-1,]
 Z <- data_nak[[3]]
@@ -51,7 +52,7 @@ simulation(Y_mat_or, W_mat_or, Z,
            B = 1000, S = 300, 
            test = FALSE, 
            K = 300, deg = 4, 
-           height = 9*0.75, width = 16*0.75, 
+           height = 9 * 0.75, width = 16 * 0.75, 
            plot_folder = NULL, save_sim = TRUE, sim_folder = NULL, 
            sim_name = 'simulation_result', 
            seed = 1234)
