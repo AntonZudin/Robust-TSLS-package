@@ -13,7 +13,7 @@
 #'
 
 
-plot_2 <- function(robust_estimate, T_0, start_year=1, 
+agg_ts_plot <- function(robust_estimate, T_0, start_year=1, 
                    folder = NULL, height = 9, width = 16) {
   
   basic_res <- robust_estimate$result

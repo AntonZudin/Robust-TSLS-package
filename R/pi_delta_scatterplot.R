@@ -8,7 +8,7 @@
 
 
 
-plot_1 <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
+pi_delta_scatterplot <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
   
   basic_res <- robust_estimate$result
   

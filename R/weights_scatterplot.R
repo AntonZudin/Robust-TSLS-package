@@ -7,7 +7,7 @@
 #' @export
 #'
 
-plot_3 <- function(robust_estimate, folder = NULL, width = 9, height = 9) {
+weights_scatterplot <- function(robust_estimate, folder = NULL, width = 9, height = 9) {
   
   basic_res <- robust_estimates$result
   index_sub <- robust_estimates$index_sub
