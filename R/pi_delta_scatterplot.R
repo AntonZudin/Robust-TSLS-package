@@ -8,7 +8,8 @@
 
 
 
-pi_delta_scatterplot <- function(robust_estimate, folder = NULL, height = 9, width = 9) {
+pi_delta_scatterplot <- function(robust_estimate, folder = NULL, 
+                                 save_pdf = FALSE, height = 9, width = 9) {
   
   basic_res <- robust_estimate$result
   
@@ -66,40 +67,60 @@ pi_delta_scatterplot <- function(robust_estimate, folder = NULL, height = 9, wid
   y_p <- mean(abs(omega_rob_norm[index_pos_rob])*rf_coeffs_post[index_pos_rob]) / mean(abs(omega_rob_norm[index_pos_rob]))
   y_n <- mean(abs(omega_rob_norm[!index_pos_rob])*rf_coeffs_post[!index_pos_rob]) / mean(abs(omega_rob_norm[!index_pos_rob]))
   
-  
-  
-  if (is.null(folder)){
-    pdf('nuk_points_1.pdf', width = width, height = height)
-  } else{
-    dir_1 <- paste(folder, "nuk_points_1.pdf", sep = "/")
-    pdf(dir_1, width = width, height = height)
+  ## Plot 1
+  if (save_pdf){
+    if (is.null(folder)){
+      pdf('nuk_points_1.pdf', width = width, height = height)
+    } else{
+      dir_1 <- paste(folder, "nuk_points_1.pdf", sep = "/")
+      pdf(dir_1, width = width, height = height)
+    }
+    
+    plot(x=fs_coeffs_full, y=rf_coeffs_full, ylim = range_rf,xlim = range_fs, pch = 1, frame = FALSE,
+         bg=NULL , col=1 + as.numeric(omega_or_norm>0), cex = abs(omega_or_norm),
+         xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
+    abline(a = weighted.mean(rf_coeffs_full - tau_or*fs_coeffs_full, w = abs(omega_or_norm)), b =tau_or, lty = 2, col = 'grey')
+    points( cbind(c(x_or_p,x_or_n),c(y_or_p,y_or_n)),cex = 2,pch = 2, col = 'blue' )
+    legend( x= x_p, y = y_n-0.3, legend = substitute(paste(hat(tau)[TSLS], ' = ', tau_or, ', ', hat(se)(hat(tau)[TSLS]), ' = ', se_or_cor),
+                                                     list(tau_or = round(tau_or,2), se_or_cor = round(se_or_cor,2))), cex=1)
+    dev.off()
+  } else {
+    plot(x=fs_coeffs_full, y=rf_coeffs_full, ylim = range_rf,xlim = range_fs, pch = 1, frame = FALSE,
+         bg=NULL , col=1 + as.numeric(omega_or_norm>0), cex = abs(omega_or_norm),
+         xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
+    abline(a = weighted.mean(rf_coeffs_full - tau_or*fs_coeffs_full, w = abs(omega_or_norm)), b =tau_or, lty = 2, col = 'grey')
+    points( cbind(c(x_or_p,x_or_n),c(y_or_p,y_or_n)),cex = 2,pch = 2, col = 'blue' )
+    legend( x= x_p, y = y_n-0.3, legend = substitute(paste(hat(tau)[TSLS], ' = ', tau_or, ', ', hat(se)(hat(tau)[TSLS]), ' = ', se_or_cor),
+                                                     list(tau_or = round(tau_or,2), se_or_cor = round(se_or_cor,2))), cex=1)
   }
   
-  plot(x=fs_coeffs_full, y=rf_coeffs_full, ylim = range_rf,xlim = range_fs, pch = 1, frame = FALSE,
-       bg=NULL , col=1 + as.numeric(omega_or_norm>0), cex = abs(omega_or_norm),
-       xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
-  abline(a = weighted.mean(rf_coeffs_full - tau_or*fs_coeffs_full, w = abs(omega_or_norm)), b =tau_or, lty = 2, col = 'grey')
-  points( cbind(c(x_or_p,x_or_n),c(y_or_p,y_or_n)),cex = 2,pch = 2, col = 'blue' )
-  legend( x= x_p, y = y_n-0.3, legend = substitute(paste(hat(tau)[TSLS], ' = ', tau_or, ', ', hat(se)(hat(tau)[TSLS]), ' = ', se_or_cor),
-                                                   list(tau_or = round(tau_or,2), se_or_cor = round(se_or_cor,2))), cex=1)
-  dev.off()
+  ## Plot 2
+  if (save_pdf){
+    if (is.null(folder)){
+      pdf('nuk_points_2.pdf', width = width, height = height)
+    } else{
+      dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
+      pdf(dir_2, width = width, height = height)
+    }
+    
+    plot(x=fs_coeffs_post, y=rf_coeffs_post, pch = 1,ylim = range_rf,xlim = range_fs, frame = FALSE,
+         bg=NULL , col=1 + as.numeric(omega_rob_norm>0), cex = abs(omega_rob_norm),
+         xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
+    abline(a = weighted.mean(rf_coeffs_post - tau_rob*fs_coeffs_post,w = abs(omega_rob_norm)), b =tau_rob,lty = 2, col = 'grey')
+    points( cbind(c(x_p,x_n),c(y_p,y_n)),cex = 2,pch = 2, col = 'blue' )
+    legend( x= x_p+0.3, y = y_n-0.3, legend = substitute(paste(hat(tau)[rob], ' = ', tau_rob, ', ', hat(se)(hat(tau)[rob]), ' = ', se_rob_cor),
+                                                         list(tau_rob = round(tau_rob,2), se_rob_cor = round(se_rob_cor,2))), cex=1)
   
-  
-  if (is.null(folder)){
-    pdf('nuk_points_2.pdf', width = width, height = height)
+    dev.off()
   } else{
-    dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
-    pdf(dir_2, width = width, height = height)
+    plot(x=fs_coeffs_post, y=rf_coeffs_post, pch = 1,ylim = range_rf,xlim = range_fs, frame = FALSE,
+         bg=NULL , col=1 + as.numeric(omega_rob_norm>0), cex = abs(omega_rob_norm),
+         xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
+    abline(a = weighted.mean(rf_coeffs_post - tau_rob*fs_coeffs_post,w = abs(omega_rob_norm)), b =tau_rob,lty = 2, col = 'grey')
+    points( cbind(c(x_p,x_n),c(y_p,y_n)),cex = 2,pch = 2, col = 'blue' )
+    legend( x= x_p+0.3, y = y_n-0.3, legend = substitute(paste(hat(tau)[rob], ' = ', tau_rob, ', ', hat(se)(hat(tau)[rob]), ' = ', se_rob_cor),
+                                                         list(tau_rob = round(tau_rob,2), se_rob_cor = round(se_rob_cor,2))), cex=1)
   }
   
-  plot(x=fs_coeffs_post, y=rf_coeffs_post, pch = 1,ylim = range_rf,xlim = range_fs, frame = FALSE,
-       bg=NULL , col=1 + as.numeric(omega_rob_norm>0), cex = abs(omega_rob_norm),
-       xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
-  abline(a = weighted.mean(rf_coeffs_post - tau_rob*fs_coeffs_post,w = abs(omega_rob_norm)), b =tau_rob,lty = 2, col = 'grey')
-  points( cbind(c(x_p,x_n),c(y_p,y_n)),cex = 2,pch = 2, col = 'blue' )
-  legend( x= x_p+0.3, y = y_n-0.3, legend = substitute(paste(hat(tau)[rob], ' = ', tau_rob, ', ', hat(se)(hat(tau)[rob]), ' = ', se_rob_cor),
-                                                       list(tau_rob = round(tau_rob,2), se_rob_cor = round(se_rob_cor,2))), cex=1)
-
-  dev.off()
 
 }
