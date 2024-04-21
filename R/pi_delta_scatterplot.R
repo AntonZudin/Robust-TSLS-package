@@ -2,6 +2,7 @@
 #' @param robust_estimate The object to use for building the plot.
 #' @param folder The folder where the plots are saved. NULL stands for the working directory.
 #' @param height The height of the plot.
+#' @param save_pdf If True, the 2 scatterplots are saved.
 #' @param width The width of the plot.
 #' @export
 #'

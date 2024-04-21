@@ -13,7 +13,42 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
+## Load library and data
 ```{r setup}
 library(RobustTSLS)
+data('nak_out_data')
+```
+
+```{r}
+Y_mat_or <- data_nak[[1]][-1,]
+W_mat_or <- data_nak[[2]][-1,]
+Z <- data_nak[[3]]
+start_year <- 1968
+state_names <- data_nak[[4]][-1]
+T <- dim(W_mat_or)[2]
+T_0 <- 10
+```
+
+## Drop Alaska, Mississipi and NorthDakota
+```{r}
+pi_unit <- W_mat_or%*%(Z-mean(Z)) / var_biased(Z)/T #calculate D_i
+index_sub <- pi_unit >= quantile(pi_unit, 0.04) & pi_unit <= quantile(pi_unit, 1)#drop inappropriate states
+robust_estimates <- robust_estimate(Y_mat_or, W_mat_or, Z, NULL, NULL, index_sub, T_0,
+                                    state_names, time_column = TRUE) 
+```
+
+
+### Figure 1 
+```{r, fig.width=7.5, fig.height=6}
+pi_delta_scatterplot(robust_estimates)
+```
+
+### Figure 2 
+```{r}
+agg_ts_plot(robust_estimates, T_0, 1968)
+```
+
+### Figure 3 
+```{r}
+weights_scatterplot(robust_estimates)
 ```
