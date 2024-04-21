@@ -126,3 +126,4 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year=1,
     abline(v = start_year+T_0, lty = 2, col = 'grey')
     legend('topleft', legend = c('Aggregate data, robust weights', 'OLS fit, learning periods', 'OLS fit, estimation periods'), col = c('black','blue','red'), pch = c(19,17,18))
   }
+}
