@@ -34,7 +34,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
                        test = FALSE, return_table = FALSE,
                        K = 300, deg = 4, 
                        height = 9*0.75, width = 16*0.75, 
-                       plot_folder = NULL, save_sim = FALSE, save_pdf = FALSE, 
+                       plot_folder = NULL, save_pdf = FALSE, save_sim = FALSE,
                        sim_folder = NULL, sim_name = 'simulation_result',
                        seed = 1234){
   
@@ -256,7 +256,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
       return ( list( coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
                      performance_table = xtable(table_full_tau_0, digits = 2) ) )
     } else {
-      return ( list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2) ))
+      return ( list(performance_table = xtable(table_full_tau_0, digits = 2) ))
     }
   }
   
