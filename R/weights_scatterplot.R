@@ -28,12 +28,12 @@ weights_scatterplot <- function(robust_estimate, folder = NULL,
     }
     
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')
-    text(or_weights,rob_weights, labels = state_names[index_sub], cex = 0.7, font = 1)
+    text(or_weights,rob_weights, labels = unit_namess[index_sub], cex = 0.7, font = 1)
     abline(a = 0, b = 1, lty = 2, lwd = 0.5, col = 'grey')
     dev.off()
   } else {
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')
-    text(or_weights,rob_weights, labels = state_names[index_sub], cex = 0.7, font = 1)
+    text(or_weights,rob_weights, labels = unit_names[index_sub], cex = 0.7, font = 1)
     abline(a = 0, b = 1, lty = 2, lwd = 0.5, col = 'grey')
   }
 }  
