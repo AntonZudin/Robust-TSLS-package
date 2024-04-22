@@ -9,7 +9,8 @@
 #' @param pi_unit a nx1 vector of exposure.
 #' @param theta_w an exposure to unobserved confounder for W (endogenous treatment).
 #' @param theta_y an exposure to unobserved confounder for Y (outcome).
-#' @param tau the original point estimate of tau. It is used for data generation. 
+#' @param tau the original point estimate of tau. It is used for data generation.
+#' @param no_noise If true, the noise is not added. We do not add noise for table 3.  
 #' @param rho_agg the share of Z_t during H_t generation.
 #' @param rho_cross the share of W (endogenous treatment) noise in Y noise.
 #' @param T_0 the size of the learning period.
@@ -22,9 +23,11 @@
 
 
 
-basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, 
-                      cov_mat_rf, pi_unit, theta_w, theta_y, tau, 
-                      rho_agg, rho_cross, T_0, Z_fit, test = FALSE, S = 300){
+basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
+                      cov_mat_fs, cov_mat_rf, pi_unit, 
+                      theta_w, theta_y, tau, 
+                      no_noise, rho_agg, rho_cross, T_0, 
+                      Z_fit, test = FALSE, S = 300){
 				
 	
 	### Data generation 	
@@ -34,10 +37,12 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs,
 	T <- dim(F_mat_Y)[2]
 
 	art_Z <- as.numeric(simulate(Z_fit, T))
-	art_H <- sqrt((1-rho_agg^2))*as.numeric(simulate(Z_fit,T)) + rho_agg*art_Z
+	art_H <- sqrt((1 - rho_agg^2))*as.numeric(simulate(Z_fit,T)) + rho_agg*art_Z
 	
+	if (!no_noise) {
 	noise_fs <- rmvnorm(n,sigma = cov_mat_fs)
-	noise_rf <- rmvnorm(n,sigma = cov_mat_rf)*sqrt((1-rho_cross^2)) + noise_fs*rho_cross 
+	noise_rf <- rmvnorm(n,sigma = cov_mat_rf)*sqrt((1 - rho_cross^2)) + noise_fs*rho_cross 
+	}
 	
 	baseline_W <- F_mat_W + L_mat_W + noise_fs
 	baseline_Y <- F_mat_Y + L_mat_Y + noise_rf

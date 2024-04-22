@@ -5,6 +5,7 @@
 #' @param Z n nx1 vector of an aggregate instrument.
 #' @param share_t the share of the learning period.
 #' @param share_rank the share of the rank of generalized fixed effects matrix in total rank.
+#' @param no_noise If true, the noise is not added. We do not add noise for table 3. 
 #' @param rho_agg the share of Z_t during H_t generation.
 #' @param rho_theta_w the exposure of W (endogenous treatment) to unobserved confounder. 
 #' @param rho_theta_y the exposure of Y (outcome) to unobserved confounder. 
@@ -14,10 +15,11 @@
 #' @param return_table If true, instead of printing table(s) the function returns it(them).
 #' @param K number of domain splits. It is used in density plot.
 #' @param deg degrees of freedom for natural cubic splines. It is used in density plot.
+#' @param draw_plot If true, the 2 density plots are drawn. 
 #' @param height the height of the plot.
 #' @param width the width of the plot.
 #' @param plot_folder The folder where the plot is saved. NULL stands for the working directory.
-#' @param save_pdf If True, the 2 density plots for Original and Robust estimators are saved. 
+#' @param save_pdf If true, the 2 density plots for Original and Robust estimators are saved. 
 #' @param save_sim If true, the function saves the simulation.
 #' @param sim_folder If 'save_sim' is true, the folder where the simulation is saved. NULL stands for the working directory.
 #' @param sim_name If 'save_sim' is true, the folder where the simulation is saved.
@@ -28,11 +30,11 @@
 
 
 simulation <- function(Y_mat_or, W_mat_or, Z, 
-                       share_t = 1/3, share_rank = 1/3, 
+                       share_t = 1/3, share_rank = 1/3, no_noise = FALSE
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
                        B = 1000, S = 300, 
                        test = FALSE, return_table = FALSE,
-                       K = 300, deg = 4, 
+                       K = 300, deg = 4, draw_plot = TRUE,
                        height = 9*0.75, width = 16*0.75, 
                        plot_folder = NULL, save_pdf = FALSE, save_sim = FALSE,
                        sim_folder = NULL, sim_name = 'simulation_result',
@@ -107,13 +109,19 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
 
   
   results_sim_4 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, L_mat_W ,F_mat_Y, L_mat_Y, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
-                          theta_w, theta_y, tau, rho_agg, rho_cross, T_0, Z_fit, test = test, S = S)
+    estimate <- basic_sim(F_mat_W, L_mat_W ,F_mat_Y, L_mat_Y, 
+                          cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
+                          theta_w, theta_y, tau, 
+                          no_noise, rho_agg, rho_cross, 
+                          T_0, Z_fit, test = test, S = S)
   })) 
   
   results_sim_3 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, cov_mat_fs, cov_mat_rf, scale_str*pi_unit,
-                          theta_w, theta_y, tau, rho_agg, rho_cross, T_0, Z_fit, test = test, S = S)
+    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, 
+                          cov_mat_fs, cov_mat_rf, scale_str*pi_unit,
+                          theta_w, theta_y, tau, 
+                          no_noise, rho_agg, rho_cross, 
+                          T_0, Z_fit, test = test, S = S)
   }))
   
   
@@ -122,13 +130,19 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   theta_y <- theta_w
   
   results_sim_2 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
-                          theta_w, theta_y, tau, rho_agg, rho_cross,T_0, Z_fit, test = test, S = S)
+    estimate <- basic_sim(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
+                          cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
+                          theta_w, theta_y, tau,
+                          no_noise, rho_agg, rho_cross,
+                          T_0, Z_fit, test = test, S = S)
   }))
   
   results_sim_1 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
-                          theta_w, theta_y, tau, rho_agg, rho_cross, T_0, Z_fit, test = test, S = S)
+    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, 
+                          cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
+                          theta_w, theta_y, tau, 
+                          no_noise, rho_agg, rho_cross, 
+                          T_0, Z_fit, test = test, S = S)
   }))
   
   
@@ -218,7 +232,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
     legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
     
     dev.off()
-  } else {
+  } else if(draw_plot) {
     par(mfrow=c(1,2)) 
     
     plot(dens_our_des_2[, c(1,3)] ,lwd = 2, xlim = c(-1.5,1.5), type = 'l', lty = 1, xlab = 'estimate',
@@ -253,10 +267,10 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   
   if (return_table){
     if (test) {
-      return ( list( coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
-                     performance_table = xtable(table_full_tau_0, digits = 2) ) )
+      return (list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
+                     performance_table = xtable(table_full_tau_0, digits = 2)))
     } else {
-      return ( list(performance_table = xtable(table_full_tau_0, digits = 2) ))
+      return (list(performance_table = xtable(table_full_tau_0, digits = 2)))
     }
   }
   

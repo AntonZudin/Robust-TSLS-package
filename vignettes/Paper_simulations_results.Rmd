@@ -19,7 +19,7 @@ library(RobustTSLS)
 data('nak_out_data')
 ```
 
-```{r setup}
+```{r}
 Y_mat_or <- data_nak[[1]]
 W_mat_or <- data_nak[[2]]
 Z <- data_nak[[3]]
@@ -29,9 +29,9 @@ T <- dim(W_mat_or)[2]
 T_0 <- 10
 ```
 
-
-```{r}
-simulation(Y_mat_or, W_mat_or, Z, 
+### Figure 4
+```{r, fig.retina = 3, fig.height= 9, fig.width=16, out.height = "100%", out.width = "100%"}
+tables <- simulation(Y_mat_or, W_mat_or, Z, 
            share_t = 1/3, share_rank = 1/3, 
            rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
            B = 1000, S = 300, 
@@ -42,4 +42,12 @@ simulation(Y_mat_or, W_mat_or, Z,
            sim_folder = NULL, sim_name = 'simulation_result', 
            seed = 1234)
 
+```
+### Table 1
+```{r}
+tables$performance_table
+```
+### Table 2
+```{r}
+tables$coverage_table
 ```

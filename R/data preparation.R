@@ -7,9 +7,6 @@
 #'
 
 
-
-
-
 data_preparation <- function(data_mat, rank){
   
   n <- dim(data_mat)[1]
