@@ -40,8 +40,11 @@ basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y,
 	art_H <- sqrt((1 - rho_agg^2))*as.numeric(simulate(Z_fit,T)) + rho_agg*art_Z
 	
 	if (!no_noise) {
-	noise_fs <- rmvnorm(n,sigma = cov_mat_fs)
-	noise_rf <- rmvnorm(n,sigma = cov_mat_rf)*sqrt((1 - rho_cross^2)) + noise_fs*rho_cross 
+  	noise_fs <- rmvnorm(n,sigma = cov_mat_fs)
+  	noise_rf <- rmvnorm(n,sigma = cov_mat_rf)*sqrt((1 - rho_cross^2)) + noise_fs*rho_cross 
+	} else {
+	  noise_fs = matrix(0, n, T)
+	  noise_rf = matrix(0, n, T)
 	}
 	
 	baseline_W <- F_mat_W + L_mat_W + noise_fs
