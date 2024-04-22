@@ -30,7 +30,7 @@
 
 
 simulation <- function(Y_mat_or, W_mat_or, Z, 
-                       share_t = 1/3, share_rank = 1/3, no_noise = FALSE
+                       share_t = 1/3, share_rank = 1/3, no_noise = FALSE,
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
                        B = 1000, S = 300, 
                        test = FALSE, return_table = FALSE,
