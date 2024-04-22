@@ -19,6 +19,8 @@ library(RobustTSLS)
 data('nak_out_data')
 ```
 
+
+## Import data and drop Alaska
 ```{r}
 Y_mat_or <- data_nak[[1]][-1,]
 W_mat_or <- data_nak[[2]][-1,]
@@ -29,7 +31,7 @@ T <- dim(W_mat_or)[2]
 T_0 <- 10
 ```
 
-## Drop Alaska, Mississipi and NorthDakota
+## Drop Mississipi and North Dakota
 ```{r}
 pi_unit <- W_mat_or%*%(Z-mean(Z)) / var_biased(Z)/T #calculate D_i
 index_sub <- pi_unit >= quantile(pi_unit, 0.04) & pi_unit <= quantile(pi_unit, 1)#drop inappropriate states
@@ -54,13 +56,41 @@ weights_scatterplot(robust_estimates)
 ```
 
 
-## Full sample
+## Import full sample
 ```{r}
-robust_estimates <- robust_estimate(Y_mat_or, W_mat_or, Z, NULL, NULL, T_0,
-                                    state_names, time_column = TRUE) 
+Y_mat_or_full <- data_nak[[1]]
+W_mat_or_full <- data_nak[[2]]
+Z_full <- data_nak[[3]]
+start_year <- 1968
+state_names_full <- data_nak[[4]]
+T <- dim(W_mat_or)[2]
+T_0 <- 10
 ```
 
 
+```{r}
+robust_estimates_full_sample <- robust_estimate(Y_mat_or = Y_mat_or_full, W_mat_or = W_mat_or_full, Z = Z_full,
+                                    unit_covariates = NULL, time_covariates = NULL, T_0 = T_0,
+                                    unit_names = state_names_full, time_column = TRUE) 
+```
+
+### Figure 5
+```{r, fig.width=9, fig.height=9}
+pi_delta_scatterplot(robust_estimates_full_sample)
+```
+
+### Figure 6
+```{r, fig.width=16, fig.height=9}
+agg_ts_plot(robust_estimates_full_sample, T_0, 1968)
+```
 
 
+```{r, fig.width=9, fig.height=9}
 
+length(rep(TRUE, length.out = nrow(Y_mat_or) ))
+```
+
+### Figure 7
+```{r, fig.width=9, fig.height=9}
+weights_scatterplot(robust_estimates_full_sample)
+```

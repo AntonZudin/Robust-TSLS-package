@@ -13,7 +13,7 @@ weights_scatterplot <- function(robust_estimate, folder = NULL,
   
   basic_res <- robust_estimate$result
   index_sub <- robust_estimate$index_sub
-  state_names <- robust_estimate$state_names
+  unit_names <- robust_estimate$unit_names
   
   or_weights <- basic_res[[1]][,1]/sd(basic_res[[1]][,1])
   rob_weights <- basic_res[[1]][,2]/sd(basic_res[[1]][,2])
@@ -28,12 +28,12 @@ weights_scatterplot <- function(robust_estimate, folder = NULL,
     }
     
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')
-    text(or_weights,rob_weights, labels=state_names[index_sub], cex=0.7, font=1)
+    text(or_weights,rob_weights, labels = state_names[index_sub], cex = 0.7, font = 1)
     abline(a = 0, b = 1, lty = 2, lwd = 0.5, col = 'grey')
     dev.off()
   } else {
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')
-    text(or_weights,rob_weights, labels=state_names[index_sub], cex=0.7, font=1)
+    text(or_weights,rob_weights, labels = state_names[index_sub], cex = 0.7, font = 1)
     abline(a = 0, b = 1, lty = 2, lwd = 0.5, col = 'grey')
   }
 }  
