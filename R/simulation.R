@@ -11,11 +11,13 @@
 #' @param B number of replications for each design of simulation.
 #' @param S if 'test' == TRUE, the number of simulations for standard error estimation.
 #' @param test If true, compute the tests for the coverage rates.
+#' @param return_table If true, instead of printing table(s) the function returns it(them).
 #' @param K number of domain splits. It is used in density plot.
 #' @param deg degrees of freedom for natural cubic splines. It is used in density plot.
 #' @param height the height of the plot.
 #' @param width the width of the plot.
 #' @param plot_folder The folder where the plot is saved. NULL stands for the working directory.
+#' @param save_pdf If True, the 2 density plots for Original and Robust estimators are saved. 
 #' @param save_sim If true, the function saves the simulation.
 #' @param sim_folder If 'save_sim' is true, the folder where the simulation is saved. NULL stands for the working directory.
 #' @param sim_name If 'save_sim' is true, the folder where the simulation is saved.
@@ -29,11 +31,11 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
                        share_t = 1/3, share_rank = 1/3, 
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
                        B = 1000, S = 300, 
-                       test = FALSE, 
+                       test = FALSE, return_table = FALSE
                        K = 300, deg = 4, 
                        height = 9*0.75, width = 16*0.75, 
-                       plot_folder = NULL, save_sim = FALSE, sim_folder = NULL, 
-                       sim_name = 'simulation_result',
+                       plot_folder = NULL, save_sim = FALSE, save_pdf = FALSE, 
+                       sim_folder = NULL, sim_name = 'simulation_result',
                        seed = 1234){
   
   set.seed(seed)
@@ -158,11 +160,13 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   
   #### Table 1
   table_full_tau_0 <- cbind(table_res_1,table_res_2,table_res_3,table_res_4)
-  print(xtable(table_full_tau_0, digits = 2))
   
+  if (!return_table){
+  print(xtable(table_full_tau_0, digits = 2))
+  }
   
   ### Coverage rates
-  if (test == TRUE){
+  if (test){
     
     row_rob <- c(mean(abs(results_sim_1[,7]) < qnorm(0.975)),
                  mean(abs(results_sim_2[,7]) < qnorm(0.975)),
@@ -175,7 +179,9 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
                 mean(abs(results_sim_4[,8]) < qnorm(0.975)))
     
     #### Table 2
-    print(xtable(rbind(row_rob, row_or),digit = 2))
+    if (!return_table){
+      print(xtable(rbind(row_rob, row_or),digit = 2))
+    }
   }
   
   
@@ -188,32 +194,48 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   dens_tsls_des_2 <- my_density_function(results_sim_2[,6], K = K,deg = deg)
   
   
-  if (is.null(plot_folder)){
-    pdf('fig_dens_full_orig.pdf', width = width, height = height)
-  } else{
-    dir <- paste(plot_folder, "fig_dens_full_orig.pdf", sep = "/")
-    pdf(dir_2, width = width, height = height)
+  
+  if (save_pdf){
+    if (is.null(plot_folder)){
+      pdf('fig_dens_full_orig.pdf', width = width, height = height)
+    } else{
+      dir <- paste(plot_folder, "fig_dens_full_orig.pdf", sep = "/")
+      pdf(dir_2, width = width, height = height)
+    }
+    
+    par(mfrow=c(1,2)) 
+    
+    plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
+         ylab = 'Density',main = 'No unobserved shocks')
+    lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty = 2)
+    abline(v = 0,lwd = 1,lty =2)
+    legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
+    
+    plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5, 1.5), type = 'l',lty = 1,xlab = 'estimate',
+         ylab = 'Density',main = 'Unobserved shocks')
+    lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty = 2)
+    abline(v = 0,lwd = 1,lty =2)
+    legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
+    
+    dev.off()
+  } else {
+    par(mfrow=c(1,2)) 
+    
+    plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
+         ylab = 'Density',main = 'No unobserved shocks')
+    lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty = 2)
+    abline(v = 0,lwd = 1,lty =2)
+    legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
+    
+    plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5, 1.5), type = 'l',lty = 1,xlab = 'estimate',
+         ylab = 'Density',main = 'Unobserved shocks')
+    lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty = 2)
+    abline(v = 0,lwd = 1,lty =2)
   }
   
-  par(mfrow=c(1,2)) 
-  
-  plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
-       ylab = 'Density',main = 'No unobserved shocks')
-  lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty = 2)
-  abline(v = 0,lwd = 1,lty =2)
-  legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
-  
-  plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5, 1.5), type = 'l',lty = 1,xlab = 'estimate',
-       ylab = 'Density',main = 'Unobserved shocks')
-  lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty = 2)
-  abline(v = 0,lwd = 1,lty =2)
-  legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
   
   
-  dev.off()
-  
-  
-  if (save_sim == TRUE) {
+  if (save_sim) {
     
     if (is.null(sim_folder)){
       
@@ -229,6 +251,14 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   }
   
   
+  if (return_table){
+    if (test) {
+      return ( list( coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
+                     performance_table = xtable(table_full_tau_0, digits = 2) ) )
+    } else {
+      return ( list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2) )
+    }
+  }
   
   
 }

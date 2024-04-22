@@ -7,15 +7,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE, echo=FALSE}
+```{r, include = FALSE, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 ## Load library and data
-```{r setup}
-library(RobustTSLS)
+```{r setup, message = FALSE, warning = FALSE}
+library(RobustTSLS) 
 data('nak_out_data')
 ```
 
@@ -41,17 +41,17 @@ robust_estimates <- robust_estimate(Y_mat_or, W_mat_or, Z, NULL, NULL, index_sub
 
 
 ### Figure 1 
-```{r, fig.width=9, fig.height=9}
+```{r, fig.retina = 3, fig.height= 9, fig.width=9, out.height = "100%", out.width = "100%"}
 pi_delta_scatterplot(robust_estimates)
 ```
 
 ### Figure 2 
-```{r, fig.width=16, fig.height=9}
+```{r, fig.retina = 3, fig.width=16, fig.height=9, out.height = "100%", out.width = "100%"}
 agg_ts_plot(robust_estimates, T_0, 1968)
 ```
 
 ### Figure 3 
-```{r, fig.width=9, fig.height=9}
+```{r, fig.retina = 3, fig.width=9, fig.height=9, out.height = "100%", out.width = "100%"}
 weights_scatterplot(robust_estimates)
 ```
 
@@ -69,28 +69,25 @@ T_0 <- 10
 
 
 ```{r}
-robust_estimates_full_sample <- robust_estimate(Y_mat_or = Y_mat_or_full, W_mat_or = W_mat_or_full, Z = Z_full,
-                                    unit_covariates = NULL, time_covariates = NULL, T_0 = T_0,
-                                    unit_names = state_names_full, time_column = TRUE) 
+robust_estimates_full_sample <- robust_estimate(Y_mat_or = Y_mat_or_full, W_mat_or = W_mat_or_full, 
+                                    Z = Z_full,unit_covariates = NULL, time_covariates = NULL,
+                                    T_0 = T_0, unit_names = state_names_full, time_column = TRUE) 
 ```
 
 ### Figure 5
-```{r, fig.width=9, fig.height=9}
+```{r, fig.retina = 3, fig.width=9, fig.height=9, out.height = "100%", out.width = "100%"}
 pi_delta_scatterplot(robust_estimates_full_sample)
 ```
 
 ### Figure 6
-```{r, fig.width=16, fig.height=9}
+```{r,fig.retina = 3, fig.width=16, fig.height=9, out.height = "100%", out.width = "100%"}
 agg_ts_plot(robust_estimates_full_sample, T_0, 1968)
 ```
 
 
-```{r, fig.width=9, fig.height=9}
-
-length(rep(TRUE, length.out = nrow(Y_mat_or) ))
-```
-
 ### Figure 7
-```{r, fig.width=9, fig.height=9}
+```{r, fig.retina = 3, fig.width=9, fig.height=9, out.height = "100%", out.width = "100%"}
 weights_scatterplot(robust_estimates_full_sample)
 ```
+
+
