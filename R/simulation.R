@@ -256,7 +256,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
       return ( list( coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
                      performance_table = xtable(table_full_tau_0, digits = 2) ) )
     } else {
-      return ( list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2) )
+      return ( list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2) ))
     }
   }
   
