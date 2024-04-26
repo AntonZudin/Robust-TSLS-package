@@ -1,0 +1,42 @@
+url: ~
+template:
+  bootstrap: 5
+
+navbar:
+  type: default
+  left:
+  - text: "Estimation"
+    href: articles/Paper_simulation_results.html
+  - text: "Simulation"
+    href: articles/Paper_estimation_results.html
+  - text: "References"
+    href: reference/index.html
+
+
+reference:
+  - title: Estimators
+    contents:
+      - robust_estimate
+      - basic_analysis
+      
+  - title: Simulation
+    contents:
+      - simulations
+      - basic_simulation
+      - sim_from_file
+      - vcov.synthdid_estimate
+      - synthdid_effect_curve
+    
+ - title: Plots
+  contents:
+      - agg_ts_plot
+      - weights_scatterplot
+      - pi_delta_scatterplot
+
+ - title: Auxiliary
+    contents:
+      - data_preparation
+      - weights_scatterplot
+      - density_function
+      - cov_biased
+      - var_biased

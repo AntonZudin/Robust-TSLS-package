@@ -1,6 +1,6 @@
 #' Draw 2 scatterplots of reduced-form and first-stage coefficients for original and robust weights.
 #' @param robust_estimate The object to use for building the plot.
-#' @param folder The folder where the plots are saved. NULL stands for the working directory.
+#' @param file If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.
 #' @param save_pdf If True, the 2 scatterplots are saved.
 #' @param height The height of the plot.
 #' @param width The width of the plot.
@@ -9,8 +9,8 @@
 
 
 
-pi_delta_scatterplot <- function(robust_estimate, folder = NULL, 
-                                 save_pdf = FALSE, height = 9, width = 9) {
+pi_delta_scatterplot <- function(robust_estimate, save_pdf = FALSE,
+                                 file = 'nak_points', height = 9, width = 9) {
   
   basic_res <- robust_estimate$result
   
@@ -70,13 +70,17 @@ pi_delta_scatterplot <- function(robust_estimate, folder = NULL,
   
   ## Plot 1
   if (save_pdf){
-    if (is.null(folder)){
-      pdf('nuk_points_1.pdf', width = width, height = height)
+    
+    if nchar(file) >= 4:
+      if (substring(file, nchar(file) - 3) == ".pdf") {
+        dir_1 <- cat(substring(file, 1, nchar(file) - 3), '_original', '.pdf', sep = '')
+      } else {
+        dir_1<- cat(file, '_original', '.pdf', sep = '')
     } else{
-      dir_1 <- paste(folder, "nuk_points_1.pdf", sep = "/")
-      pdf(dir_1, width = width, height = height)
+      dir_1 <- cat(file, '_original', '.pdf', sep = '')
     }
     
+    pdf(dir_1, width = width, height = height)
     plot(x=fs_coeffs_full, y=rf_coeffs_full, ylim = range_rf,xlim = range_fs, pch = 1, frame = FALSE,
          bg=NULL , col=1 + as.numeric(omega_or_norm>0), cex = abs(omega_or_norm),
          xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')
@@ -97,13 +101,17 @@ pi_delta_scatterplot <- function(robust_estimate, folder = NULL,
   
   ## Plot 2
   if (save_pdf){
-    if (is.null(folder)){
-      pdf('nuk_points_2.pdf', width = width, height = height)
-    } else{
-      dir_2 <- paste(folder, "nuk_points_2.pdf", sep = "/")
-      pdf(dir_2, width = width, height = height)
+    
+    if nchar(file) >= 4:
+      if (substring(file, nchar(file) - 3) == ".pdf") {
+        dir_2 <- cat(substring(file, 1, nchar(file) - 3), '_robust', '.pdf', sep = '')
+      } else {
+        dir_2<- cat(file, '_robust', '.pdf', sep = '')
+      } else{
+        dir_2 <- cat(file, '_robust', '.pdf', sep = '')
     }
     
+    pdf(dir_2, width = width, height = height)
     plot(x=fs_coeffs_post, y=rf_coeffs_post, pch = 1,ylim = range_rf,xlim = range_fs, frame = FALSE,
          bg=NULL , col=1 + as.numeric(omega_rob_norm>0), cex = abs(omega_rob_norm),
          xlab = 'First Stage Coefficients', ylab = 'Reduced Form Coefficients')

@@ -6,8 +6,8 @@
 #' @param robust_estimate The object to use for building the plot.
 #' @param T_0 The number of periods used for constructing the weights.
 #' @param start_year The starting year in the plot's x-axis.
-#' @param folder The folder where the plots are saved. NULL stands for the working directory.
-#' @param save_pdf If True, the 2 time-series plots are saved.
+#' @param save_pdf If true, the 2 time-series plots are saved.
+#' @param file If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.
 #' @param height The height of the plot.
 #' @param width The width of the plot.
 #' @export
@@ -15,7 +15,7 @@
 
 
 agg_ts_plot <- function(robust_estimate, T_0, start_year = 1, 
-                        folder = NULL, save_pdf = FALSE, 
+                        save_pdf = FALSE, file = 'time-series',
                         height = 9, width = 16) {
   
   basic_res <- robust_estimate$result
@@ -47,13 +47,16 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year = 1,
   r_sq_y_or <- 1 - var_biased(Y_agg[(T_0+1):T] - Y_fit[(T_0+1):T]) / var_biased(Y_agg[(T_0+1):T])
   
   if (save_pdf){
-    if (is.null(folder)){
-      pdf('nuk_original.pdf', width = width, height = height)
+    if nchar(file) >= 4:
+      if (substring(file, nchar(file) - 3) == ".pdf") {
+        dir_1 <- cat(substring(file, 1, nchar(file) - 3), '_original', '.pdf', sep = '')
+      } else {
+        dir_1 <- cat(file, '_original', '.pdf', sep = '')
     } else{
-      dir_1 <- paste(folder, "nuk_original.pdf", sep = "/")
-      pdf(dir_1, width = width, height = height)
-    }
+      dir_1 <- cat(file, '_original', '.pdf', sep = '')
+  }
     
+    pdf(dir_1, width = width, height = height)
     par(mfrow=c(2,1)) 
     plot(years,W_agg, ylim = c(min(W_agg),max(W_agg)+0.1), type = 'b',xlab ="",ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19,frame = FALSE)
     lines(years,W_fit,col = 'red',lty = 2, type = 'b', pch = 18)
@@ -83,15 +86,18 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year = 1,
   
   
   if (save_pdf){
-    if (is.null(folder)){
-      pdf('nuk_new.pdf', width = width, height = height)
+    
+    if nchar(file) >= 4:
+      if (substring(file, nchar(file) - 3) == ".pdf") {
+        dir_2 <- cat(substring(file, 1, nchar(file) - 3), '_robust', '.pdf', sep = '')
+      } else {
+        dir_2 <- cat(file, '_robust', '.pdf', sep = '')
     } else{
-      dir_2 <- paste(folder, "nuk_new.pdf", sep = "/")
-      pdf(dir_2, width = width, height = height)
+      dir_2 <- cat(file, '_robust', '.pdf', sep = '')
     }
     
+    pdf(dir_2, width = width, height = height)
     par(mfrow=c(2,1)) 
-    
     plot(years,W_agg_rob, ylim = c(min(W_agg),max(W_agg)+0.1), type = 'b',xlab = '',ylab = 'Aggregate W',main = 'First Stage',lty = 1, pch = 19,frame = FALSE)
     lines(years[(T_0+1):T],W_fit_rob[(T_0+1):T],col = 'red',lty = 2, type = 'b', pch = 18)
     lines(years[1:T_0],W_fit_rob[1:T_0],col = 'blue',lty = 2, type = 'b', pch = 17)
