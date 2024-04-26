@@ -24,7 +24,7 @@ robust_estimate(
 
 \item{Z}{an nx1 vector of an aggregate instrument.}
 
-\item{index_sub}{an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.}
+\item{index_sub}{an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.NULL stands for selecting all the units.}
 
 \item{T_0}{the size of the learning period.}
 

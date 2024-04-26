@@ -2,7 +2,7 @@
 % Please edit documentation in R/basic_analysis.R
 \name{basic_analysis}
 \alias{basic_analysis}
-\title{Calculate the necessary.}
+\title{Calculate the necessary for the estimators.}
 \usage{
 basic_analysis(
   Y_mat,
@@ -39,5 +39,5 @@ basic_analysis(
 A list with weights, coefficients, standard errors, delta and pi and aggregated W, Y (observed and predicted).
 }
 \description{
-Calculate the necessary.
+Calculate the necessary for the estimators.
 }

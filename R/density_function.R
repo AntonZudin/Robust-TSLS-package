@@ -7,7 +7,7 @@
 
 
 
-my_density_function <- function(x, K, deg){
+density_function <- function(x, K, deg){
   
   x_min <- min(x)
   x_max <- max(x)

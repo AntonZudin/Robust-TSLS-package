@@ -1,8 +1,8 @@
 ---
-title: "Paper_estimations"
+title: "Paper estimations"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Paper_estimations}
+  %\VignetteIndexEntry{Paper estimations}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -20,7 +20,7 @@ data('nak_out_data')
 ```
 
 
-## Import data and drop Alaska
+### Drop Alaska
 ```{r}
 Y_mat_or <- data_nak[[1]][-1,]
 W_mat_or <- data_nak[[2]][-1,]
@@ -31,7 +31,7 @@ T <- dim(W_mat_or)[2]
 T_0 <- 10
 ```
 
-## Drop Mississipi and North Dakota
+### Drop Mississipi and North Dakota
 ```{r}
 pi_unit <- W_mat_or%*%(Z-mean(Z)) / var_biased(Z)/T #calculate D_i
 index_sub <- pi_unit >= quantile(pi_unit, 0.04) & pi_unit <= quantile(pi_unit, 1)#drop inappropriate states
@@ -39,6 +39,7 @@ robust_estimates <- robust_estimate(Y_mat_or, W_mat_or, Z, NULL, NULL, index_sub
                                     state_names, time_column = TRUE) 
 ```
 
+## Paper results
 
 ### Figure 1 
 ```{r, fig.retina = 3, fig.height= 9, fig.width=9, out.height = "100%", out.width = "100%"}

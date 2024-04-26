@@ -2,7 +2,7 @@
 % Please edit documentation in R/biased var and cov.R
 \name{cov_biased}
 \alias{cov_biased}
-\title{Biased covarience}
+\title{Biased covarience.}
 \usage{
 cov_biased(x, y)
 }

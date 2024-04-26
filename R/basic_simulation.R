@@ -1,4 +1,4 @@
-#' Calculate the necessary for the simulation.
+#' Calculate the necessary for one simulation.
 #'
 #' @param F_mat_W a nxT two-way fixed effects matrix for W (endogenous treatment).
 #' @param L_mat_W a nxT generalized fixed effects (low-rank) matrix for W (endogenous treatment).
@@ -23,7 +23,7 @@
 
 
 
-basic_sim <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
+basic_simulation <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
                       cov_mat_fs, cov_mat_rf, pi_unit, 
                       theta_w, theta_y, tau, 
                       no_noise, rho_agg, rho_cross, T_0, 

@@ -1,4 +1,4 @@
-#' Biased covarience
+#' Biased covarience.
 #' 
 #' @description
 #' The denominator is n.
@@ -14,7 +14,7 @@ cov_biased <- function(x, y){
 }
 
 
-#' Biased varience
+#' Biased varience.
 #' 
 #' @description
 #' The denominator is n.

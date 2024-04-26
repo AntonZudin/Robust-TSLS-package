@@ -1,5 +1,7 @@
-test_function <- function(n,T,T_0, pi_unit,theta_w,theta_y, sigma_rf, sigma_fs,
-				tau,rho_agg,Z_fit, S = 200){
+test_function <- function(n, T, T_0, pi_unit, 
+                          theta_w, theta_y, 
+                          sigma_rf, sigma_fs, tau,
+                          rho_agg, Z_fit, S = 200){
 				
 	
 	### Data generation

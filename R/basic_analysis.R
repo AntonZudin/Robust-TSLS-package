@@ -1,4 +1,4 @@
-#' Calculate the necessary.
+#' Calculate the necessary for the estimators.
 #'
 #' @param Y_mat Y, the nxT matrix of outcome.
 #' @param W_mat W, the nxT matrix of endogenous treatment.

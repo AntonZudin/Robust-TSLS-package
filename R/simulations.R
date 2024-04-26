@@ -1,4 +1,4 @@
-#' Perform simulations and present the results.
+#' Perform the simulations and present the results.
 #'
 #' @param Y_mat_or an nxT matrix of outcome.
 #' @param W_mat_or an nxT matrix of endogenous treatment.
@@ -29,7 +29,7 @@
 
 
 
-simulation <- function(Y_mat_or, W_mat_or, Z, 
+simulations <- function(Y_mat_or, W_mat_or, Z, 
                        share_t = 1/3, share_rank = 1/3, no_noise = FALSE,
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
                        B = 1000, S = 300, 
@@ -109,7 +109,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
 
   
   results_sim_4 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, L_mat_W ,F_mat_Y, L_mat_Y, 
+    estimate <- basic_simulation(F_mat_W, L_mat_W ,F_mat_Y, L_mat_Y, 
                           cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
                           theta_w, theta_y, tau, 
                           no_noise, rho_agg, rho_cross, 
@@ -117,7 +117,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   })) 
   
   results_sim_3 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, 
+    estimate <- basic_simulation(F_mat_W, 0, F_mat_Y, 0, 
                           cov_mat_fs, cov_mat_rf, scale_str*pi_unit,
                           theta_w, theta_y, tau, 
                           no_noise, rho_agg, rho_cross, 
@@ -130,7 +130,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   theta_y <- theta_w
   
   results_sim_2 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
+    estimate <- basic_simulation(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y, 
                           cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
                           theta_w, theta_y, tau,
                           no_noise, rho_agg, rho_cross,
@@ -138,7 +138,7 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   }))
   
   results_sim_1 <- do.call(rbind,lapply(1:B, function(b) { 
-    estimate <- basic_sim(F_mat_W, 0, F_mat_Y, 0, 
+    estimate <- basic_simulation(F_mat_W, 0, F_mat_Y, 0, 
                           cov_mat_fs, cov_mat_rf, scale_str*pi_unit, 
                           theta_w, theta_y, tau, 
                           no_noise, rho_agg, rho_cross, 
@@ -201,11 +201,11 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
   
   
   ### Density plot
-  dens_our_des_4 <- my_density_function(results_sim_4[,5], K = K, deg = deg)
-  dens_tsls_des_4 <- my_density_function(results_sim_4[,6], K = K,deg = deg)
+  dens_our_des_4 <- density_function(results_sim_4[,5], K = K, deg = deg)
+  dens_tsls_des_4 <- density_function(results_sim_4[,6], K = K,deg = deg)
   
-  dens_our_des_2 <- my_density_function(results_sim_2[,5], K = K,deg = deg)
-  dens_tsls_des_2 <- my_density_function(results_sim_2[,6], K = K,deg = deg)
+  dens_our_des_2 <- density_function(results_sim_2[,5], K = K,deg = deg)
+  dens_tsls_des_2 <- density_function(results_sim_2[,6], K = K,deg = deg)
   
   
   
@@ -253,7 +253,6 @@ simulation <- function(Y_mat_or, W_mat_or, Z,
     
     if (is.null(sim_folder)){
       
-      #sim_results <- list(results_sim_1, results_sim_2, results_sim_3, results_sim_4)
       save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
            file = sim_name)
     } else {
