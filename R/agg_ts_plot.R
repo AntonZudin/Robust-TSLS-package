@@ -47,14 +47,15 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year = 1,
   r_sq_y_or <- 1 - var_biased(Y_agg[(T_0+1):T] - Y_fit[(T_0+1):T]) / var_biased(Y_agg[(T_0+1):T])
   
   if (save_pdf){
-    if (nchar(file) >= 4):
+    if (nchar(file) >= 4){
       if (substring(file, nchar(file) - 3) == ".pdf") {
         dir_1 <- cat(substring(file, 1, nchar(file) - 3), '_original', '.pdf', sep = '')
       } else {
         dir_1 <- cat(file, '_original', '.pdf', sep = '')
+      }
     } else{
       dir_1 <- cat(file, '_original', '.pdf', sep = '')
-  }
+    }
     
     pdf(dir_1, width = width, height = height)
     par(mfrow=c(2,1)) 
@@ -87,11 +88,12 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year = 1,
   
   if (save_pdf){
     
-    if (nchar(file) >= 4):
+    if (nchar(file) >= 4){
       if (substring(file, nchar(file) - 3) == ".pdf") {
         dir_2 <- cat(substring(file, 1, nchar(file) - 3), '_robust', '.pdf', sep = '')
       } else {
         dir_2 <- cat(file, '_robust', '.pdf', sep = '')
+      }
     } else{
       dir_2 <- cat(file, '_robust', '.pdf', sep = '')
     }

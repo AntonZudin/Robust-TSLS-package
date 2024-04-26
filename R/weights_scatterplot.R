@@ -22,14 +22,15 @@ weights_scatterplot <- function(robust_estimate,save_pdf = FALSE,
   
   if (save_pdf){
     
-    if nchar(file) >= 4:
+    if (nchar(file) >= 4){
       if (substring(file, nchar(file) - 3) == ".pdf") {
         dir <- file
       } else {
         dir <- cat(file, '.pdf', sep = '')
-      } else{
-        dir <- cat(file, '.pdf', sep = '')
       }
+    } else{
+        dir <- cat(file, '.pdf', sep = '')
+    }
     
     pdf(dir, width = width, height = height) 
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')
