@@ -19,24 +19,17 @@ weights_scatterplot <- function(robust_estimate,save_pdf = FALSE,
   rob_weights <- basic_res[[1]][,2]/sd(basic_res[[1]][,2])
   
 
+  
   if (save_pdf){
-    if (is.null(folder)){
-      pdf('nak_weights.pdf', width = width, height = height)
-    } else{
-      dir <- paste(folder, "nak_weights.pdf", sep = "/")
-      pdf(dir, width = width, height = height)
-    }
     
-    if (save_pdf){
-      
-      if nchar(file) >= 4:
-        if (substring(file, nchar(file) - 3) == ".pdf") {
-          dir <- file
-        } else {
-          dir <- cat(file, '.pdf', sep = '')
-        } else{
-          dir <- cat(file, '.pdf', sep = '')
-        }
+    if nchar(file) >= 4:
+      if (substring(file, nchar(file) - 3) == ".pdf") {
+        dir <- file
+      } else {
+        dir <- cat(file, '.pdf', sep = '')
+      } else{
+        dir <- cat(file, '.pdf', sep = '')
+      }
     
     pdf(dir, width = width, height = height) 
     plot(or_weights,rob_weights, pch = 3, cex = 0.5, col = 'white', lwd = 1, xlab = 'Original weights', ylab = 'Robust weights')

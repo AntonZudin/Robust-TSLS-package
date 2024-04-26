@@ -71,7 +71,7 @@ pi_delta_scatterplot <- function(robust_estimate, save_pdf = FALSE,
   ## Plot 1
   if (save_pdf){
     
-    if nchar(file) >= 4:
+    if (nchar(file) >= 4):
       if (substring(file, nchar(file) - 3) == ".pdf") {
         dir_1 <- cat(substring(file, 1, nchar(file) - 3), '_original', '.pdf', sep = '')
       } else {
@@ -102,7 +102,7 @@ pi_delta_scatterplot <- function(robust_estimate, save_pdf = FALSE,
   ## Plot 2
   if (save_pdf){
     
-    if nchar(file) >= 4:
+    if (nchar(file) >= 4):
       if (substring(file, nchar(file) - 3) == ".pdf") {
         dir_2 <- cat(substring(file, 1, nchar(file) - 3), '_robust', '.pdf', sep = '')
       } else {
