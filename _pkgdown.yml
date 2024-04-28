@@ -10,7 +10,7 @@ development:
 navbar:
   type: default
   left:
-  - icon: fa-solid fa-house
+  - icon: fa-home
     href: index.html
   - text: "Estimation"
     href: articles/Paper_estimation_results.html

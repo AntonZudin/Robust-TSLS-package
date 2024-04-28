@@ -2,8 +2,7 @@ pandoc: 3.1.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  Intro_to_RobustTSLS: Intro_to_RobustTSLS.html
   Paper_estimation_results: Paper_estimation_results.html
   Paper_simulations_results: Paper_simulations_results.html
-last_built: 2024-04-27T13:51Z
+last_built: 2024-04-28T16:12Z
 

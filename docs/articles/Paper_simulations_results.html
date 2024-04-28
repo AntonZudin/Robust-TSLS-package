@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">RobustTSLS</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,12 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="../index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="../articles/Paper_estimation_results.html">Estimation</a>
 </li>
@@ -93,17 +99,20 @@
 <span>           rho_agg <span class="op">=</span> <span class="fl">0.5</span>, rho_theta_w <span class="op">=</span> <span class="fl">0.2</span>, rho_theta_y <span class="op">=</span> <span class="fl">0.3</span>, </span>
 <span>           B <span class="op">=</span> <span class="fl">1000</span>, S <span class="op">=</span> <span class="fl">300</span>, </span>
 <span>           test <span class="op">=</span> <span class="cn">TRUE</span>, return_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>           K <span class="op">=</span> <span class="fl">300</span>, deg <span class="op">=</span> <span class="fl">4</span>, draw_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>           height <span class="op">=</span> <span class="fl">9</span> <span class="op">*</span> <span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">16</span> <span class="op">*</span> <span class="fl">0.75</span>, </span>
-<span>           plot_folder <span class="op">=</span> <span class="cn">NULL</span>, save_pdf <span class="op">=</span> <span class="cn">FALSE</span>, save_sim <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>           sim_folder <span class="op">=</span> <span class="cn">NULL</span>, sim_name <span class="op">=</span> <span class="st">'simulation_result'</span>, </span>
-<span>           seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Paper_simulations_results_files/figure-html/unnamed-chunk-3-1.png" width="100%" height="100%">
-### Table 1</p>
+<span>           K <span class="op">=</span> <span class="fl">300</span>, deg <span class="op">=</span> <span class="fl">4</span>, height <span class="op">=</span> <span class="fl">9</span><span class="op">*</span><span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">16</span><span class="op">*</span><span class="fl">0.75</span>, </span>
+<span>           save_pdf <span class="op">=</span> <span class="cn">FALSE</span>, file_plot <span class="op">=</span> <span class="st">'density_plot'</span>,</span>
+<span>           draw_plot <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>           save_sim <span class="op">=</span> <span class="cn">FALSE</span>, file_sim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>           seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span>;</span></code></pre></div>
+<p><img src="Paper_simulations_results_files/figure-html/unnamed-chunk-3-1.png" width="100%" height="100%"></p>
+</div>
+<div class="section level3">
+<h3 id="table-1">Table 1<a class="anchor" aria-label="anchor" href="#table-1"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tables</span><span class="op">$</span><span class="va">performance_table</span></span>
 <span><span class="co">#&gt; % latex table generated in R 4.2.2 by xtable 1.8-4 package</span></span>
-<span><span class="co">#&gt; % Sat Apr 27 17:47:24 2024</span></span>
+<span><span class="co">#&gt; % Sun Apr 28 19:36:21 2024</span></span>
 <span><span class="co">#&gt; \begin{table}[ht]</span></span>
 <span><span class="co">#&gt; \centering</span></span>
 <span><span class="co">#&gt; \begin{tabular}{rrrrrrrrr}</span></span>
@@ -126,7 +135,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tables</span><span class="op">$</span><span class="va">coverage_table</span></span>
 <span><span class="co">#&gt; % latex table generated in R 4.2.2 by xtable 1.8-4 package</span></span>
-<span><span class="co">#&gt; % Sat Apr 27 17:47:24 2024</span></span>
+<span><span class="co">#&gt; % Sun Apr 28 19:36:21 2024</span></span>
 <span><span class="co">#&gt; \begin{table}[ht]</span></span>
 <span><span class="co">#&gt; \centering</span></span>
 <span><span class="co">#&gt; \begin{tabular}{rrrrr}</span></span>
@@ -138,22 +147,30 @@
 <span><span class="co">#&gt;    \hline</span></span>
 <span><span class="co">#&gt; \end{tabular}</span></span>
 <span><span class="co">#&gt; \end{table}</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="alternative-setup">Alternative setup<a class="anchor" aria-label="anchor" href="#alternative-setup"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table_alternative</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/simulations.html">simulations</a></span><span class="op">(</span><span class="va">Y_mat_or</span>, <span class="va">W_mat_or</span>, <span class="va">Z</span>, </span>
-<span>           share_t <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, share_rank <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>           no_noise <span class="op">=</span> <span class="cn">TRUE</span>, rho_agg <span class="op">=</span> <span class="fl">0.5</span>, </span>
-<span>           rho_theta_w <span class="op">=</span> <span class="fl">0.2</span>, rho_theta_y <span class="op">=</span> <span class="fl">0.3</span>, </span>
-<span>           B <span class="op">=</span> <span class="fl">1000</span>, S <span class="op">=</span> <span class="fl">300</span>, </span>
-<span>           test <span class="op">=</span>  <span class="cn">FALSE</span>, return_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>           K <span class="op">=</span> <span class="fl">300</span>, deg <span class="op">=</span> <span class="fl">4</span>, draw_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>           height <span class="op">=</span> <span class="fl">9</span> <span class="op">*</span> <span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">16</span> <span class="op">*</span> <span class="fl">0.75</span>, </span>
-<span>           plot_folder <span class="op">=</span> <span class="cn">NULL</span>, save_pdf <span class="op">=</span> <span class="cn">FALSE</span>, save_sim <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>           sim_folder <span class="op">=</span> <span class="cn">NULL</span>, sim_name <span class="op">=</span> <span class="st">'simulation_result'</span>, </span>
-<span>           seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
+<span>             share_t <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, share_rank <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>             no_noise <span class="op">=</span> <span class="cn">TRUE</span>, rho_agg <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>             rho_theta_w <span class="op">=</span> <span class="fl">0.2</span>, rho_theta_y <span class="op">=</span> <span class="fl">0.3</span>, </span>
+<span>             B <span class="op">=</span> <span class="fl">1000</span>, S <span class="op">=</span> <span class="fl">300</span>, </span>
+<span>             test <span class="op">=</span>  <span class="cn">FALSE</span>, return_table <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>             K <span class="op">=</span> <span class="fl">300</span>, deg <span class="op">=</span> <span class="fl">4</span>, height <span class="op">=</span> <span class="fl">9</span><span class="op">*</span><span class="fl">0.75</span>, width <span class="op">=</span> <span class="fl">16</span><span class="op">*</span><span class="fl">0.75</span>, </span>
+<span>             save_pdf <span class="op">=</span> <span class="cn">FALSE</span>, file_plot <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>             draw_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>             save_sim <span class="op">=</span> <span class="cn">FALSE</span>, file_sim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>             seed <span class="op">=</span> <span class="fl">1234</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="table-3">Table 3<a class="anchor" aria-label="anchor" href="#table-3"></a>
+</h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table_alternative</span><span class="op">$</span><span class="va">performance_table</span></span>
 <span><span class="co">#&gt; % latex table generated in R 4.2.2 by xtable 1.8-4 package</span></span>
-<span><span class="co">#&gt; % Sat Apr 27 17:47:56 2024</span></span>
+<span><span class="co">#&gt; % Sun Apr 28 19:36:48 2024</span></span>
 <span><span class="co">#&gt; \begin{table}[ht]</span></span>
 <span><span class="co">#&gt; \centering</span></span>
 <span><span class="co">#&gt; \begin{tabular}{rrrrrrrrr}</span></span>

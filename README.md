@@ -9,5 +9,6 @@ The current version of the package can be installed from source using devtools.
 ```
 #### References
 Dmitry Arkhangelsky and Vasily Korovkin.
+
 <b>On Policy Evaluation with Aggregate Time-Series Shocks</b>, 2024.
 [<a href="https://arxiv.org/abs/1905.13660">arxiv</a>]
