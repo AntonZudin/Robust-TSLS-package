@@ -22,16 +22,25 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/agg_ts_plot.html</loc>
+  </url>
+  <url>
     <loc>/reference/basic_analysis.html</loc>
   </url>
   <url>
     <loc>/reference/basic_sim.html</loc>
   </url>
   <url>
+    <loc>/reference/basic_simulation.html</loc>
+  </url>
+  <url>
     <loc>/reference/cov_biased.html</loc>
   </url>
   <url>
     <loc>/reference/data_preparation.html</loc>
+  </url>
+  <url>
+    <loc>/reference/density_function.html</loc>
   </url>
   <url>
     <loc>/reference/format.robust_estimate.html</loc>
@@ -41,6 +50,9 @@
   </url>
   <url>
     <loc>/reference/my_density_function.html</loc>
+  </url>
+  <url>
+    <loc>/reference/pi_delta_scatterplot.html</loc>
   </url>
   <url>
     <loc>/reference/plot_1.html</loc>
@@ -61,6 +73,9 @@
     <loc>/reference/simulation.html</loc>
   </url>
   <url>
+    <loc>/reference/simulations.html</loc>
+  </url>
+  <url>
     <loc>/reference/sim_from_file.html</loc>
   </url>
   <url>
@@ -68,5 +83,8 @@
   </url>
   <url>
     <loc>/reference/weights_function.html</loc>
+  </url>
+  <url>
+    <loc>/reference/weights_scatterplot.html</loc>
   </url>
 </urlset>

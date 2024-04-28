@@ -6,8 +6,8 @@
 \usage{
 weights_scatterplot(
   robust_estimate,
-  folder = NULL,
   save_pdf = FALSE,
+  file = "nak_weights",
   height = 9,
   width = 9
 )
@@ -15,9 +15,9 @@ weights_scatterplot(
 \arguments{
 \item{robust_estimate}{The object to use for building the plot.}
 
-\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
+\item{save_pdf}{If True, the scatterplot is saved and not displayed.}
 
-\item{save_pdf}{If True, the scatterplot is saved.}
+\item{file}{If save_pdf is true, string giving the file path (including the file name).}
 
 \item{height}{The height of the plot.}
 

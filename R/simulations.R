@@ -15,14 +15,14 @@
 #' @param return_table If true, instead of printing table(s) the function returns it(them).
 #' @param K number of domain splits. It is used in density plot.
 #' @param deg degrees of freedom for natural cubic splines. It is used in density plot.
-#' @param draw_plot If true, the 2 density plots are drawn. 
 #' @param height the height of the plot.
 #' @param width the width of the plot.
-#' @param plot_folder The folder where the plot is saved. NULL stands for the working directory.
 #' @param save_pdf If true, the 2 density plots for Original and Robust estimators are saved. 
+#' @param file_plot If save_pdf is true, string giving the file path (including the file name).
+#' @param draw_plot If draw_plot is true and save_pdf is false, the 2 density plots are drawn in one chart. 
 #' @param save_sim If true, the function saves the simulation.
-#' @param sim_folder If 'save_sim' is true, the folder where the simulation is saved. NULL stands for the working directory.
-#' @param sim_name If 'save_sim' is true, the folder where the simulation is saved.
+#' @param file_sim If save_sim is true, string giving the file path (including the file name).
+
 #' @param seed seed to set. 
 #'
 #' @export
@@ -34,10 +34,10 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
                        rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
                        B = 1000, S = 300, 
                        test = FALSE, return_table = FALSE,
-                       K = 300, deg = 4, draw_plot = TRUE,
-                       height = 9*0.75, width = 16*0.75, 
-                       plot_folder = NULL, save_pdf = FALSE, save_sim = FALSE,
-                       sim_folder = NULL, sim_name = 'simulation_result',
+                       K = 300, deg = 4, height = 9*0.75, width = 16*0.75, 
+                       save_pdf = FALSE, file_plot = 'density_plot',
+                       draw_plot = TRUE,
+                       save_sim = FALSE, file_sim = 'simulation_result',
                        seed = 1234){
   
   set.seed(seed)
@@ -208,15 +208,18 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   dens_tsls_des_2 <- density_function(results_sim_2[,6], K = K,deg = deg)
   
   
-  
   if (save_pdf){
-    if (is.null(plot_folder)){
-      pdf('fig_dens_full_orig.pdf', width = width, height = height)
-    } else{
-      dir <- paste(plot_folder, "fig_dens_full_orig.pdf", sep = "/")
-      pdf(dir_2, width = width, height = height)
+    if (nchar(file) >= 4){
+      if (substring(file_plot, nchar(file_plot) - 3) == ".pdf") {
+        dir_plot <- file_plot
+      } else {
+        dir_plot <- cat(file_plot, '.pdf', sep = '')
+      }
+    } else {
+    dir_plot <- cat(file_plot, '.pdf', sep = '')
     }
     
+    pdf(dir_plot, width = width, height = height)
     par(mfrow=c(1,2)) 
     
     plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
@@ -232,7 +235,7 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
     legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
     
     dev.off()
-  } else if(draw_plot) {
+  } else if (draw_plot) {
     par(mfrow=c(1,2)) 
     
     plot(dens_our_des_2[, c(1,3)] ,lwd = 2, xlim = c(-1.5,1.5), type = 'l', lty = 1, xlab = 'estimate',
@@ -247,8 +250,7 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
     abline(v = 0, lwd = 1, lty =2)
   }
   
-  
-  
+
   if (save_sim) {
     
     if (is.null(sim_folder)){

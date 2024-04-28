@@ -6,8 +6,8 @@
 \usage{
 pi_delta_scatterplot(
   robust_estimate,
-  folder = NULL,
   save_pdf = FALSE,
+  file = "nak_points",
   height = 9,
   width = 9
 )
@@ -15,9 +15,9 @@ pi_delta_scatterplot(
 \arguments{
 \item{robust_estimate}{The object to use for building the plot.}
 
-\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
+\item{save_pdf}{If True, the 2 scatterplots are saved and not displayed.}
 
-\item{save_pdf}{If True, the 2 scatterplots are saved.}
+\item{file}{If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.}
 
 \item{height}{The height of the plot.}
 

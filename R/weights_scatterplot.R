@@ -1,7 +1,7 @@
 #' Draw a comparative scatterplot for original weights and robust weights.
 #' 
 #' @param robust_estimate The object to use for building the plot.
-#' @param save_pdf  If True, the scatterplot is saved.
+#' @param save_pdf  If True, the scatterplot is saved and not displayed.
 #' @param file If save_pdf is true, string giving the file path (including the file name).
 #' @param height The height of the plot.
 #' @param width The width of the plot.

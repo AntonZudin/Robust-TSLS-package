@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.R
 \name{print.robust_estimate}
 \alias{print.robust_estimate}
-\title{Print a robust_estimate object}
+\title{Print a robust_estimate object.}
 \usage{
 \method{print}{robust_estimate.}(estimate)
 }
@@ -10,5 +10,5 @@
 \item{x}{The object to print.}
 }
 \description{
-Print a robust_estimate object
+Print a robust_estimate object.
 }

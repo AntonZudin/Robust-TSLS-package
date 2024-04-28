@@ -6,7 +6,7 @@
 #' @param robust_estimate The object to use for building the plot.
 #' @param T_0 The number of periods used for constructing the weights.
 #' @param start_year The starting year in the plot's x-axis.
-#' @param save_pdf If true, the 2 time-series plots are saved.
+#' @param save_pdf If true, the 2 time-series plots are saved and not displayed.
 #' @param file If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.
 #' @param height The height of the plot.
 #' @param width The width of the plot.

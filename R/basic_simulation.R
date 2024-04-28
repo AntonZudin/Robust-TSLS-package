@@ -60,9 +60,12 @@ basic_simulation <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y,
 
 	D_b <- (1/T_0) * W_b[,1:T_0] %*% (art_Z[1:T_0] - mean(art_Z[1:T_0])) / var(art_Z[1:T_0])
 	
-	omega_rob_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0],D_unit = D_b, unit_covariates = NULL,
+	omega_rob_b <- weights_function(Y_b[, 1:T_0], W_b[, 1:T_0], art_Z[1:T_0], 
+	                                D_unit = D_b, unit_covariates = NULL,
 	                                time_covariates = NULL, add_const = TRUE, lambda = 'basic')
-	omega_or_b <- weights_function(Y_b[,1:T_0],W_b[,1:T_0],art_Z[1:T_0], D_unit = D_b, unit_covariates = NULL, 
+	
+	omega_or_b <- weights_function(Y_b[, 1:T_0], W_b[, 1:T_0], art_Z[1:T_0], 
+	                               D_unit = D_b, unit_covariates = NULL, 
 	                               time_covariates = NULL, add_const = TRUE,  lambda = 100000)
 	
 	### Aggregates
@@ -76,9 +79,9 @@ basic_simulation <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y,
 	### Coefficients
 	
 	
-	pi_or <- lm(agg_W_or_b~art_Z[(T_0 + 1):T])$coefficients[2]
-	delta_or <- lm(agg_Y_or_b~art_Z[(T_0 + 1):T])$coefficients[2]
-	tau_or <- delta_or/pi_or
+	pi_or <- lm(agg_W_or_b ~ art_Z[(T_0 + 1):T])$coefficients[2]
+	delta_or <- lm(agg_Y_or_b ~ art_Z[(T_0 + 1):T])$coefficients[2]
+	tau_or <- delta_or / pi_or
 
 
 	

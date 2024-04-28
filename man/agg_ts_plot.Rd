@@ -8,8 +8,8 @@ agg_ts_plot(
   robust_estimate,
   T_0,
   start_year = 1,
-  folder = NULL,
   save_pdf = FALSE,
+  file = "time-series",
   height = 9,
   width = 16
 )
@@ -21,9 +21,9 @@ agg_ts_plot(
 
 \item{start_year}{The starting year in the plot's x-axis.}
 
-\item{folder}{The folder where the plots are saved. NULL stands for the working directory.}
+\item{save_pdf}{If true, the 2 time-series plots are saved and not displayed.}
 
-\item{save_pdf}{If True, the 2 time-series plots are saved.}
+\item{file}{If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.}
 
 \item{height}{The height of the plot.}
 
