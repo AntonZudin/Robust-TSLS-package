@@ -65,10 +65,6 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
   
   class(robust_estimate) <- "robust_estimate"
   
-  
-  return(robust_estimate)
-  
-  
   return(robust_estimate)
   
 }
