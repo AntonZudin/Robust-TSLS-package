@@ -1,48 +1,42 @@
-url: ~
+url: https://antonzudin.github.io/Robust-TSLS-package/
 template:
   bootstrap: 5
-  
 destination: docs
-
 development:
-  mode: auto  
-  
+  mode: auto
 navbar:
   type: default
   left:
   - icon: fa-home
     href: index.html
-  - text: "Estimation"
+  - text: Estimation
     href: articles/Paper_estimation_results.html
-  - text: "Simulation"
+  - text: Simulation
     href: articles/Paper_simulations_results.html
-  - text: "References"
+  - text: References
     href: reference/index.html
-  
 reference:
-  - title: Estimators
-    contents:
-      - robust_estimate
-      - basic_analysis
-      
-  - title: Simulation
-    contents:
-      - simulations
-      - basic_simulation
-      - sim_from_file
-    
-  - title: Plots
-    contents:
-      - agg_ts_plot
-      - weights_scatterplot
-      - pi_delta_scatterplot
+- title: Estimators
+  contents:
+  - robust_estimate
+  - basic_analysis
+- title: Simulation
+  contents:
+  - simulations
+  - basic_simulation
+  - sim_from_file
+- title: Plots
+  contents:
+  - agg_ts_plot
+  - weights_scatterplot
+  - pi_delta_scatterplot
+- title: Auxiliary
+  contents:
+  - data_preparation
+  - weights_function
+  - format.robust_estimate
+  - print.robust_estimate
+  - density_function
+  - cov_biased
+  - var_biased
 
-  - title: Auxiliary
-    contents:
-      - data_preparation
-      - weights_function
-      - format.robust_estimate
-      - print.robust_estimate
-      - density_function
-      - cov_biased
-      - var_biased
