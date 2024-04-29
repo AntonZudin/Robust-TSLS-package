@@ -11,9 +11,9 @@
 weights_scatterplot <- function(robust_estimate, save_pdf = FALSE,
                                 file = 'nak_weights', height = 9, width = 9) {
   
-  basic_res <- robust_estimate@result
-  index_sub <- robust_estimate@index_sub
-  unit_names <- robust_estimate@unit_names
+  basic_res <- robust_estimate$result
+  index_sub <- robust_estimate$index_sub
+  unit_names <- robust_estimate$unit_names
   
   or_weights <- basic_res[[1]][,1]/sd(basic_res[[1]][,1])
   rob_weights <- basic_res[[1]][,2]/sd(basic_res[[1]][,2])

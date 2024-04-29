@@ -187,7 +187,11 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates,
   colnames(agg_fits) <- c('W_agg','W_fit','Y_agg','Y_fit','W_agg_rob','W_fit_rob',
                           'Y_agg_rob','Y_fit_rob')
   
-  results <- list(weights_matrix,coefs_matrix,se_vec,ind_coefs,agg_fits)
+  results <- list(weights_matrix,
+                  coefs_matrix,
+                  se_vec,
+                  ind_coefs,
+                  agg_fits)
   
   return(results)
   

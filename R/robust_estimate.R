@@ -55,24 +55,18 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
                               D = pi_unit, T_0 = T_0, seed)
   
   
-  setClass("robust_estimate", slots = list(result = 'list', 
-                                           index_sub = 'array', 
-                                           unit_names = 'character'))
-  robust_estimate <- new("robust_estimate", 
-                         result = basic_res,
-                         index_sub = index_sub, 
-                         unit_names = unit_names)
   
-  setMethod("show",
-            "robust_estimate",
-            function(object) {
-              se <-  object@result[[3]][['se_rob_cor']]
-              tau <-  object@result[[2]][2, 3]
-              output <- sprintf('robust estimator: %.2f, s.e.: %.2f,  95%% confidence interval: [%.2f, %.2f]',
-                                tau, se, tau - 1.96*se, tau + 1.96*se)
-              cat(output, "\n")
-            }
-  )
+  
+  robust_estimate <- list(result = basic_res,
+                          index_sub = index_sub, 
+                          unit_names = unit_names,
+                          tau = basic_res[[2]][2, 3],
+                          s.e. = basic_res[[3]][['se_rob_cor']])
+  
+  class(robust_estimate) <- "robust_estimate"
+  
+  
+  return(robust_estimate)
   
   
   return(robust_estimate)
