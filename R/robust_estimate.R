@@ -63,6 +63,17 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
                          index_sub = index_sub, 
                          unit_names = unit_names)
   
+  setMethod("show",
+            "robust_estimate",
+            function(object) {
+              se <-  object@result[[3]][['se_rob_cor']]
+              tau <-  object@result[[2]][2, 3]
+              output <- sprintf('robust estimator: %.2f, s.e.: %.2f,  95%% confidence interval: [%.2f, %.2f]',
+                                tau, se, tau - 1.96*se, tau + 1.96*se)
+              cat(output, "\n")
+            }
+  )
+  
   
   return(robust_estimate)
   
