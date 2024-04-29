@@ -1,8 +1,11 @@
-pandoc: 3.1.1
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   Paper_estimation_results: Paper_estimation_results.html
   Paper_simulations_results: Paper_simulations_results.html
-last_built: 2024-04-28T16:12Z
+last_built: 2024-04-29T08:50Z
+urls:
+  reference: https://antonzudin.github.io/Robust-TSLS-package/reference
+  article: https://antonzudin.github.io/Robust-TSLS-package/articles
 
