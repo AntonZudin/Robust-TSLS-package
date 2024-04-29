@@ -18,7 +18,7 @@ agg_ts_plot <- function(robust_estimate, T_0, start_year = 1,
                         save_pdf = FALSE, file = 'time-series',
                         height = 9, width = 16) {
   
-  basic_res <- robust_estimate$result
+  basic_res <- robust_estimate@result
   
   
   scale_w_agg <- (max(basic_res[[5]][,1])-min(basic_res[[5]][,1]))/2

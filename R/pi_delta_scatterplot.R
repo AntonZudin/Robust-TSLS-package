@@ -12,7 +12,7 @@
 pi_delta_scatterplot <- function(robust_estimate, save_pdf = FALSE,
                                  file = 'nak_points', height = 9, width = 9) {
   
-  basic_res <- robust_estimate$result
+  basic_res <- robust_estimate@result
   
   
   tau_or <- basic_res[[2]][1,3]

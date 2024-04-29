@@ -37,7 +37,7 @@ robust_estimate(
 \item{D}{an nx1 vector of exposure.}
 }
 \value{
-A robust estimator with result, attached as an attribute. It is an output of basic_analysis function.
+A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function.
 }
 \description{
 Compute the robust estimator for tau.

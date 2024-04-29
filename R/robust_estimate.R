@@ -8,7 +8,7 @@
 #' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.
 #' @param seed, seed to set.
-#' @return A robust estimator with result, attached as an attribute. It is an output of basic_analysis function. 
+#' @return A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function. 
 #' @export
 #'
 
@@ -55,10 +55,13 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
                               D = pi_unit, T_0 = T_0, seed)
   
   
-  
-  robust_estimate <- list(result = basic_res, index_sub = index_sub, unit_names = unit_names)
-  
-  class(robust_estimate) <- "robust_estimate"
+  setClass("robust_estimate", slots = list(result = 'list', 
+                                           index_sub = 'array', 
+                                           unit_names = 'character'))
+  robust_estimate <- new("robust_estimate", 
+                         result = basic_res,
+                         index_sub = index_sub, 
+                         unit_names = unit_names)
   
   
   return(robust_estimate)
