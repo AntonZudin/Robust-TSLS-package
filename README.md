@@ -7,6 +7,9 @@ The current version of the package can be installed from source using devtools.
  ```R  
  devtools::install_github("AntonZudin/Robust-TSLS-package")
 ```
+
+The [online vignettes](https://synth-inference.github.io/synthdid/articles/more-plotting.html) contains paper rusults and functions documentation 
+
 #### References
 Dmitry Arkhangelsky and Vasily Korovkin.
 
