@@ -61,7 +61,7 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
                           index_sub = index_sub, 
                           unit_names = unit_names,
                           tau = basic_res[[2]][2, 3],
-                          s.e. = basic_res[[3]][['se_rob_cor']])
+                          se = basic_res[[3]][['se_rob_cor']])
   
   class(robust_estimate) <- "robust_estimate"
   
