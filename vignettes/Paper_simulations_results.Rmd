@@ -34,37 +34,40 @@ tables <- simulations(Y_mat_or, W_mat_or, Z,
            rho_agg = 0.5, rho_theta_w = 0.2, rho_theta_y = 0.3, 
            B = 1000, S = 300, 
            test = TRUE, return_table = TRUE,
-           K = 300, deg = 4, draw_plot = TRUE,
-           height = 9 * 0.75, width = 16 * 0.75, 
-           plot_folder = NULL, save_pdf = FALSE, save_sim = FALSE,
-           sim_folder = NULL, sim_name = 'simulation_result', 
-           seed = 1234)
+           K = 300, deg = 4, height = 9*0.75, width = 16*0.75, 
+           save_pdf = FALSE, file_plot = 'density_plot',
+           draw_plot = TRUE,
+           save_sim = FALSE, file_sim = NULL,
+           seed = 1234);
 ```
+
 ### Table 1
 ```{r}
 tables$performance_table
 ```
+
 ### Table 2
 ```{r}
 tables$coverage_table
 ```
 
+### Alternative setup
 
 ```{r}
 table_alternative <- simulations(Y_mat_or, W_mat_or, Z, 
-           share_t = 1/3, share_rank = 1, 
-           no_noise = TRUE, rho_agg = 0.5, 
-           rho_theta_w = 0.2, rho_theta_y = 0.3, 
-           B = 1000, S = 300, 
-           test =  FALSE, return_table = TRUE,
-           K = 300, deg = 4, draw_plot = FALSE,
-           height = 9 * 0.75, width = 16 * 0.75, 
-           plot_folder = NULL, save_pdf = FALSE, save_sim = FALSE,
-           sim_folder = NULL, sim_name = 'simulation_result', 
-           seed = 1234)
+             share_t = 1/3, share_rank = 1, 
+             no_noise = TRUE, rho_agg = 0.5, 
+             rho_theta_w = 0.2, rho_theta_y = 0.3, 
+             B = 1000, S = 300, 
+             test =  FALSE, return_table = TRUE,
+             K = 300, deg = 4, height = 9*0.75, width = 16*0.75, 
+             save_pdf = FALSE, file_plot = NULL,
+             draw_plot = FALSE,
+             save_sim = FALSE, file_sim = NULL,
+             seed = 1234)
 ```
 
-
+### Table 3
 
 ```{r}
 table_alternative$performance_table
