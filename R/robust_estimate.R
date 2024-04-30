@@ -7,7 +7,7 @@
 #' @param unit_names an nx1 vector with unit names. It is used only in plot_1 function. 
 #' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.
-#' @param seed, seed to set.
+#' @param seed seed to set.
 #' @return A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function. 
 #' @export
 #'
@@ -32,8 +32,8 @@ robust_estimate <- function(Y_mat_or, W_mat_or, Z,
   
   
   if (!is.null(index_sub)){
-    Y_mat_or <- Y_mat_or[index_sub,]
-    W_mat_or <- W_mat_or[index_sub,]
+    Y_mat_or <- Y_mat_or[index_sub, ]
+    W_mat_or <- W_mat_or[index_sub, ]
   } else {
     index_sub <- rep(TRUE, length.out = nrow(Y_mat_or))
   }

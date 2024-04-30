@@ -5,9 +5,8 @@
 \title{Present the simulation results from simulation file.}
 \usage{
 sim_from_file(
-  file_folder = NULL,
-  file_name = "simulation_result",
-  plot_folder = NULL,
+  sim_file = "simulation_result",
+  plot_file = "density_plot",
   K = 300,
   deg = 4,
   height = 9 * 0.75,
@@ -15,11 +14,9 @@ sim_from_file(
 )
 }
 \arguments{
-\item{file_folder}{The folder where the simulation file is located. NULL stands for the working directory.}
+\item{sim_file}{String giving the simulation file path (including the file name).}
 
-\item{file_name}{The name of the simulation file.}
-
-\item{plot_folder}{The folder where the plot is saved. NULL stands for the working directory.}
+\item{plot_file}{String giving the plot file path (including the file name).}
 
 \item{K}{number of domain splits. It is used in density plot.}
 

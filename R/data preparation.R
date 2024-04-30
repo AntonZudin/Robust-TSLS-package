@@ -21,8 +21,8 @@ data_preparation <- function(data_mat, rank){
     t(factor_time) #matrix approximation
   
   error_mat <- data_mat - L_mat_orig
-  F_mat <- outer(rowMeans(L_mat_orig),rep(1,T)) +
-    outer(rep(1,n),colMeans(L_mat_orig)) - mean(L_mat_orig)
+  F_mat <- outer(rowMeans(L_mat_orig), rep(1,T)) +
+    outer(rep(1,n), colMeans(L_mat_orig)) - mean(L_mat_orig)
   L_mat <- L_mat_orig - F_mat
   #unit_fe <- rowMeans(F_mat)
   

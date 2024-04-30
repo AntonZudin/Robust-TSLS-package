@@ -32,7 +32,7 @@ robust_estimate(
 
 \item{time_column}{If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.}
 
-\item{seed, }{seed to set.}
+\item{seed}{seed to set.}
 
 \item{D}{an nx1 vector of exposure.}
 }

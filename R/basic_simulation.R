@@ -85,16 +85,16 @@ basic_simulation <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y,
 
 
 	
-	pi_rob <- lm(agg_W_rob_b~art_Z[(T_0 + 1):T])$coefficients[2]
-	delta_rob <- lm(agg_Y_rob_b~art_Z[(T_0 + 1):T])$coefficients[2]
+	pi_rob <- lm(agg_W_rob_b ~ art_Z[(T_0 + 1):T])$coefficients[2]
+	delta_rob <- lm(agg_Y_rob_b ~ art_Z[(T_0 + 1):T])$coefficients[2]
 	tau_rob <- delta_rob / pi_rob
 
 
 	### Results
 	
-	pi_rob_true <- mean(omega_rob_b*pi_unit)
-	delta_rob_true <- tau * mean(omega_rob_b*pi_unit)
-	pi_or_true <- mean(omega_or_b*pi_unit)
+	pi_rob_true <- mean(omega_rob_b * pi_unit)
+	delta_rob_true <- tau * mean(omega_rob_b * pi_unit)
+	pi_or_true <- mean(omega_or_b * pi_unit)
 	delta_or_true <- tau * mean(omega_or_b*pi_unit)
 	
 	
@@ -132,7 +132,7 @@ basic_simulation <- function(F_mat_W, L_mat_W, F_mat_Y, L_mat_Y,
 	
 	
     se_rob <- sd(results_sd[, 1])
-	  test_rob <- (tau_rob - tau)/se_rob
+	  test_rob <- (tau_rob - tau) / se_rob
 	
 	
 	  se_or <- sd(results_sd[, 2])

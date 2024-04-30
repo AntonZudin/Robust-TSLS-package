@@ -23,25 +23,27 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   n <- dim(Y_mat)[1]
   
   
-  if (add_const){
-    if (is.null(unit_covariates)){
+  if (add_const) {
+    if (is.null(unit_covariates)) {
       unit_covariates <- matrix(1, ncol = 1, nrow = n)
     } else {
-      unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n), matrix(unit_covariates, ncol = 1, nrow = n))
+      unit_covariates <- cbind(matrix(1, ncol = 1, nrow = n),
+                               matrix(unit_covariates, ncol = 1, nrow = n))
     }
     
-    if (is.null(time_covariates)){
+    if (is.null(time_covariates)) {
       time_covariates <-  matrix(1, ncol = 1, nrow = T)
     } else {
-      time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T), matrix(time_covariates, ncol = 1, nrow = T))
+      time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T),
+                                matrix(time_covariates, ncol = 1, nrow = T))
     }
     
   } else{
-    if (!is.null(unit_covariates)){
+    if (!is.null(unit_covariates)) {
       unit_covariates <- matrix(unit_covariates, nrow = n)
     }
     
-    if (!is.null(time_covariates)){
+    if (!is.null(time_covariates)) {
       time_covariates <- matrix(time_covariates, nrow = T)
     }
   }
@@ -51,16 +53,19 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
 
   
   
-  Y_dm <- Y_mat - outer(rep(1,n),colMeans(Y_mat)) -  outer(rowMeans(Y_mat),rep(1,T)) + mean(Y_mat)
-  W_dm <- W_mat - outer(rep(1,n),colMeans(W_mat)) -  outer(rowMeans(W_mat),rep(1,T)) + mean(W_mat)
+  Y_dm <- Y_mat - outer(rep(1,n),colMeans(Y_mat)) - 
+        outer(rowMeans(Y_mat),rep(1,T)) + mean(Y_mat)
+  W_dm <- W_mat - outer(rep(1,n),colMeans(W_mat)) -  
+        outer(rowMeans(W_mat),rep(1,T)) + mean(W_mat)
   
   Z_agg <- matrix(Z_agg, nrow = T)
   Z_full <- cbind(time_covariates, Z_agg)
-  M_z <- diag(T) - Z_full %*% solve(t(Z_full) %*% Z_full) %*% t(Z_full)
+  M_z <- diag(T) - Z_full %*% solve(t(Z_full) %*% 
+                              Z_full) %*% t(Z_full)
   Y_z <- Y_dm %*% M_z
   W_z <- W_dm %*% M_z
-  Y_norm <- Y_z / norm(Y_z-mean(Y_z),'f')
-  W_norm <- W_z / norm(W_z-mean(W_z),'f')
+  Y_norm <- Y_z / norm(Y_z-mean(Y_z), 'f')
+  W_norm <- W_z / norm(W_z-mean(W_z), 'f')
   
   if (lambda == 'basic') {lambda <- max(norm(Y_norm,'2')^2,norm(W_norm,'2')^2)}
   
@@ -70,8 +75,9 @@ weights_function <- function(Y_mat, W_mat, Z_agg, D_unit,
   
   D <- solve(A%*%t(A) + lambda*diag(n)/T)
   
-  weights_un <- D%*%X%*%solve(t(X)%*%D%*%X)%*%c(rep(0,dim_x),1)
-  weights_norm <- weights_un/mean(weights_un*D_unit)
+  weights_un <- D %*% X %*% solve(t(X) %*% D %*% X) %*% 
+                                c(rep(0,dim_x),1)
+  weights_norm <- weights_un / mean(weights_un * D_unit)
   return(weights_norm)
   
 }

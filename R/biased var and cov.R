@@ -8,7 +8,7 @@
 #' @export
 #'
 
-cov_biased <- function(x, y){
+cov_biased <- function(x, y) {
   return((length(x) - 1) / length(x) * cov(x, y)) 
   
 }
@@ -24,6 +24,6 @@ cov_biased <- function(x, y){
 #'
 
 
-var_biased <- function(x){
+var_biased <- function(x) {
   return((length(x) - 1) / length(x) * var(x)) 
 }

@@ -23,7 +23,8 @@ agg_ts_plot(
 
 \item{save_pdf}{If true, the 2 time-series plots are saved and not displayed.}
 
-\item{file}{If save_pdf is true, string giving the file path (including the file name). `_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.}
+\item{file}{If save_pdf is true, string giving the file path (including the file name).
+`_robust` and `_original` are added to the end of the file name for Robust and Original time-series respectively.}
 
 \item{height}{The height of the plot.}
 

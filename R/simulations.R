@@ -48,7 +48,7 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   ### Parameters
   T_0 <- floor(share_t * T)
   rank <- floor(share_rank * T)
-  pi_unit <- (1/T)*W_mat_or[,1:T]%*%(Z[1:T]-mean(Z[1:T])) / var(Z[1:T])
+  pi_unit <- (1/T) * W_mat_or[,1:T] %*% (Z[1:T]-mean(Z[1:T])) / var(Z[1:T])
   Z_dem <- Z - mean(Z)
   
   
@@ -56,7 +56,7 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   tau <- as.numeric(t((pi_unit-mean(pi_unit)))%*%Y_mat_or%*%Z_dem /
                       t((pi_unit-mean(pi_unit)))%*%W_mat_or%*%Z_dem)
   
-  M_z <- diag(T) - Z_dem%*%solve(t(Z_dem)%*%Z_dem)%*%t(Z_dem)
+  M_z <- diag(T) - Z_dem %*% solve(t(Z_dem)%*%Z_dem) %*% t(Z_dem)
   Y_mat <- Y_mat_or %*% M_z 
   W_mat <- W_mat_or %*% M_z
   
@@ -85,7 +85,8 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   size_F_w <- norm(F_mat_W,'f')^2 / (n*T)
   size_E_w <- norm(E_mat_W,'f')^2 / (n*T)
   
-  rho_cross <- sum(diag(E_mat_Y%*%t(E_mat_W))) / (norm(E_mat_W,'f')*norm(E_mat_Y,'f'))
+  rho_cross <- sum(diag(E_mat_Y%*%t(E_mat_W))) /
+               (norm(E_mat_W,'f')*norm(E_mat_Y,'f'))
   
   scale_fs <- size_E_w 
   scale_rf <- size_E_y
@@ -96,8 +97,10 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   scale_str <- sqrt(size_L_w)  / (sd(Z)*sd(pi_unit)) 
   bias_scale_w <- 1
   bias_scale_y <- 3
-  theta_w <- scale_str*bias_scale_w*(rho_theta_w*pi_unit  + sqrt(1-(rho_theta_w)^2)*rnorm(n)*sd(pi_unit))
-  theta_y <- scale_str*bias_scale_y*(rho_theta_y*pi_unit  + sqrt(1-(rho_theta_y)^2)*rnorm(n)*sd(pi_unit)) 
+  theta_w <- scale_str*bias_scale_w*(rho_theta_w*pi_unit  + 
+             sqrt(1-(rho_theta_w)^2)*rnorm(n)*sd(pi_unit))
+  theta_y <- scale_str*bias_scale_y*(rho_theta_y*pi_unit  + 
+             sqrt(1-(rho_theta_y)^2)*rnorm(n)*sd(pi_unit)) 
 
   
   
@@ -208,8 +211,8 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
   dens_tsls_des_2 <- density_function(results_sim_2[,6], K = K,deg = deg)
   
   
-  if (save_pdf){
-    if (nchar(file) >= 4){
+  if (save_pdf) {
+    if (nchar(file) >= 4) {
       if (substring(file_plot, nchar(file_plot) - 3) == ".pdf") {
         dir_plot <- file_plot
       } else {
@@ -222,51 +225,51 @@ simulations <- function(Y_mat_or, W_mat_or, Z,
     pdf(dir_plot, width = width, height = height)
     par(mfrow=c(1,2)) 
     
-    plot(dens_our_des_2[,c(1,3)],lwd = 2, xlim = c(-1.5,1.5), type = 'l',lty = 1,xlab = 'estimate',
-         ylab = 'Density',main = 'No unobserved shocks')
-    lines(dens_tsls_des_2 [,c(1,3)],lwd = 2,lty = 2)
-    abline(v = 0,lwd = 1,lty =2)
-    legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
+    plot(dens_our_des_2[, c(1,3)], lwd = 2, 
+         xlim = c(-1.5,1.5), type = 'l', lty = 1, xlab = 'estimate',
+         ylab = 'Density', main = 'No unobserved shocks')
+    lines(dens_tsls_des_2 [, c(1,3)], lwd = 2, lty = 2)
+    abline(v = 0, lwd = 1, lty =2)
+    legend('topright', lty = c(1,2), legend = c('Robust', 'TSLS'))
     
-    plot(dens_our_des_4[,c(1,3)],lwd = 2, xlim = c(-1.5, 1.5), type = 'l',lty = 1, xlab = 'estimate',
-         ylab = 'Density',main = 'Unobserved shocks')
-    lines(dens_tsls_des_4 [,c(1,3)],lwd = 2,lty = 2)
-    abline(v = 0,lwd = 1,lty =2)
-    legend('topright',lty = c(1,2),legend = c('Robust','TSLS'))
+    plot(dens_our_des_4[,c(1,3)], lwd = 2,
+         xlim = c(-1.5, 1.5), type = 'l', lty = 1, xlab = 'estimate',
+         ylab = 'Density', main = 'Unobserved shocks')
+    lines(dens_tsls_des_4 [, c(1,3)], lwd = 2, lty = 2)
+    abline(v = 0, lwd = 1, lty =2)
+    legend('topright', lty = c(1,2), legend = c('Robust','TSLS'))
     
     dev.off()
   } else if (draw_plot) {
     par(mfrow=c(1,2)) 
     
-    plot(dens_our_des_2[, c(1,3)] ,lwd = 2, xlim = c(-1.5,1.5), type = 'l', lty = 1, xlab = 'estimate',
+    plot(dens_our_des_2[, c(1,3)] , lwd = 2,
+         xlim = c(-1.5,1.5), type = 'l', lty = 1, xlab = 'estimate',
          ylab = 'Density',main = 'No unobserved shocks')
     lines(dens_tsls_des_2 [, c(1,3)], lwd = 2, lty = 2)
     abline(v = 0, lwd = 1, lty =2)
     legend('topright', lty = c(1,2), legend = c('Robust','TSLS'))
     
-    plot(dens_our_des_4[,c(1,3)], lwd = 2, xlim = c(-1.5, 1.5), type = 'l', lty = 1, xlab = 'estimate',
+    plot(dens_our_des_4[,c(1,3)], lwd = 2,
+         xlim = c(-1.5, 1.5), type = 'l', lty = 1, xlab = 'estimate',
          ylab = 'Density', main = 'Unobserved shocks')
     lines(dens_tsls_des_4 [,c(1,3)], lwd = 2, lty = 2)
     abline(v = 0, lwd = 1, lty =2)
   }
   
-
+  
+  
+  
+  
+  
   if (save_sim) {
-    
-    if (is.null(sim_folder)){
-      
-      save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
-           file = sim_name)
-    } else {
-      dir <- paste(sim_folder, sim_name, sep = '/')
-      save(results_sim_1, results_sim_2, results_sim_3, results_sim_4,
-           file = dir)
+      save(results_sim_1, results_sim_2, 
+           results_sim_3, results_sim_4,
+           file = file_sim)
     }
-    
-  }
   
   
-  if (return_table){
+  if (return_table) {
     if (test) {
       return (list(coverage_table = xtable(rbind(row_rob, row_or), digit = 2), 
                      performance_table = xtable(table_full_tau_0, digits = 2)))
