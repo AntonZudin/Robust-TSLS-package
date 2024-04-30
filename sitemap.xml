@@ -4,13 +4,13 @@
     <loc>https://antonzudin.github.io/Robust-TSLS-package/404.html</loc>
   </url>
   <url>
+    <loc>https://antonzudin.github.io/Robust-TSLS-package/articles/index.html</loc>
+  </url>
+  <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/articles/Paper_estimation_results.html</loc>
   </url>
   <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/articles/Paper_simulations_results.html</loc>
-  </url>
-  <url>
-    <loc>https://antonzudin.github.io/Robust-TSLS-package/articles/index.html</loc>
   </url>
   <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/authors.html</loc>
@@ -37,25 +37,19 @@
     <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/density_function.html</loc>
   </url>
   <url>
-    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/format.robust_estimate.html</loc>
-  </url>
-  <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/index.html</loc>
   </url>
   <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/pi_delta_scatterplot.html</loc>
   </url>
   <url>
-    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/print.robust_estimate.html</loc>
-  </url>
-  <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/robust_estimate.html</loc>
   </url>
   <url>
-    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/sim_from_file.html</loc>
+    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/simulations.html</loc>
   </url>
   <url>
-    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/simulations.html</loc>
+    <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/sim_from_file.html</loc>
   </url>
   <url>
     <loc>https://antonzudin.github.io/Robust-TSLS-package/reference/var_biased.html</loc>
