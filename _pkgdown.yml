@@ -34,8 +34,6 @@ reference:
   contents:
   - data_preparation
   - weights_function
-  - format.robust_estimate
-  - print.robust_estimate
   - density_function
   - cov_biased
   - var_biased

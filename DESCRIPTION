@@ -8,7 +8,7 @@ Author: Dmitry Arkhangelsky [aut, cre]
 Maintainer: Dmitry Arkhangelsky <darkhangel@cemfi.es>
 Description: Robust estimator when the variable of interest is endogenous and 
              there is access to aggregate time-series instrument.
-Depends: R (>= 3.5), mvtnorm, forecast, xtable, plotrix, methods
+Depends: R (>= 3.5), mvtnorm, forecast, xtable, plotrix
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

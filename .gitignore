@@ -1,3 +1,4 @@
+inst/doc
 docs
 .Rproj.user
 .Rhistory
@@ -5,3 +6,4 @@ docs
 .httr-oauth
 .DS_Store
 .quarto
+docs/
