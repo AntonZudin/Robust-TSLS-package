@@ -5,7 +5,7 @@
 #' @param Z Z, the nx1 vector of an aggregate instrument.
 #' @param unit_covariates unit covariate(s).
 #' @param time_covariates time covariate(s).
-#' @param add_const If true, add constant as a unit and time covariate.
+#' @param add_const If true, add constant for weights estimation.
 #' @param D the nx1 vector of exposure.
 #' @param T_0 the size of the learning period.
 #' @param seed a seed to set.
@@ -18,7 +18,8 @@
 
 
 
-basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates, 
+basic_analysis <- function(Y_mat, W_mat, Z,
+                           unit_covariates, time_covariates, 
                            add_const, D, T_0, seed = 1234) {
   
   set.seed(seed)
