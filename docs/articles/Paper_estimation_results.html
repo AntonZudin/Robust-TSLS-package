@@ -105,9 +105,13 @@
 <h4 id="drop-mississipi-and-north-dakota">Drop Mississipi and North Dakota<a class="anchor" aria-label="anchor" href="#drop-mississipi-and-north-dakota"></a>
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pi_unit</span> <span class="op">&lt;-</span> <span class="va">W_mat_or</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span><span class="op">(</span><span class="va">Z</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="../reference/var_biased.html">var_biased</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span><span class="op">/</span><span class="cn">T</span> <span class="co">#calculate D_i</span></span>
-<span><span class="va">index_sub</span> <span class="op">&lt;-</span> <span class="va">pi_unit</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">pi_unit</span>, <span class="fl">0.04</span><span class="op">)</span> <span class="op">&amp;</span> <span class="va">pi_unit</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">pi_unit</span>, <span class="fl">1</span><span class="op">)</span><span class="co">#drop inappropriate states</span></span>
-<span><span class="va">robust_estimates</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/robust_estimate.html">robust_estimate</a></span><span class="op">(</span><span class="va">Y_mat_or</span>, <span class="va">W_mat_or</span>, <span class="va">Z</span>, <span class="cn">NULL</span>, <span class="cn">NULL</span>, <span class="va">index_sub</span>, <span class="va">T_0</span>,</span>
+<code class="sourceCode R"><span><span class="va">pi_unit</span> <span class="op">&lt;-</span> <span class="va">W_mat_or</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="op">(</span><span class="va">Z</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="../reference/var_biased.html">var_biased</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span><span class="op">/</span><span class="cn">T</span> <span class="co">#calculate D_i</span></span>
+<span><span class="va">index_sub</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">pi_unit</span> <span class="op">&gt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">pi_unit</span>, <span class="fl">0.04</span><span class="op">)</span><span class="op">)</span> <span class="op">&amp;</span></span>
+<span>             <span class="op">(</span><span class="va">pi_unit</span> <span class="op">&lt;=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">pi_unit</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="co">#drop inappropriate states</span></span>
+<span></span>
+<span><span class="va">robust_estimates</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/robust_estimate.html">robust_estimate</a></span><span class="op">(</span><span class="va">Y_mat_or</span>, <span class="va">W_mat_or</span>, <span class="va">Z</span>,</span>
+<span>                                    <span class="cn">NULL</span>, <span class="cn">NULL</span>,</span>
+<span>                                    <span class="va">index_sub</span>, <span class="va">T_0</span>,</span>
 <span>                                    <span class="va">state_names</span>, time_column <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level4">
@@ -178,7 +182,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Dmitry Arkhangelsky.</p>
+<p>Developed by Dmitry Arkhangelsky, Anton Zudin, Vasily Korovkin.</p>
 </div>
 
 <div class="pkgdown-footer-right">

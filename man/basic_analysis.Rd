@@ -27,7 +27,7 @@ basic_analysis(
 
 \item{time_covariates}{time covariate(s).}
 
-\item{add_const}{If true, add constant as a unit and time covariate.}
+\item{add_const}{If true, add constant for weights estimation.}
 
 \item{D}{the nx1 vector of exposure.}
 

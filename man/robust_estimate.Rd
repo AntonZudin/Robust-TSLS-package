@@ -24,7 +24,11 @@ robust_estimate(
 
 \item{Z}{an nx1 vector of an aggregate instrument.}
 
-\item{index_sub}{an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.NULL stands for selecting all the units.}
+\item{unit_covariates}{an optional nxC matrix of unit covariate(s), where C is the number of covariates. NULL stands for no covariates.}
+
+\item{time_covariates}{an optional TxC matrix of time covariate(s), where C is the number of covariates. NULL stands for no covariates.}
+
+\item{index_sub}{an nx1 vector with binary coordinates. If the coordinate is TRUE, we include this state in the estimation. NULL stands for selecting all the units.}
 
 \item{T_0}{the size of the learning period.}
 
@@ -37,7 +41,7 @@ robust_estimate(
 \item{D}{an nx1 vector of exposure.}
 }
 \value{
-A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function.
+A robust estimator (S3 class) with result, attached as an attribute. It is an output of basic_analysis function.
 }
 \description{
 Compute the robust estimator for tau.

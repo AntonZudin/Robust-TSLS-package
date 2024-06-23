@@ -7,11 +7,8 @@ Author: Dmitry Arkhangelsky [aut, cre]
         Anton Zudin [cre]
 Authors@R: c(
   person("Dmitry", "Arkhangelsky", email = "darkhangel@cemfi.es", role = c("aut", "cre")),
-  person("Anton", "Zudin", role = c("cre"),
-  person("Vasily", "Korovkin", role = c("aut"))
-)        
-        
-Maintainer: Dmitry Arkhangelsky <darkhangel@cemfi.es>
+  person("Anton", "Zudin", role = c("cre")),
+  person("Vasily", "Korovkin", role = c("aut")))
 Description: Robust estimator when the variable of interest is endogenous and 
              there is access to aggregate time-series instrument.
 Depends: R (>= 3.5), mvtnorm, forecast, xtable, plotrix
