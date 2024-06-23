@@ -2,13 +2,15 @@
 #' @param Y_mat_or an nxT matrix of outcome.
 #' @param W_mat_or an nxT matrix of endogenous treatment.
 #' @param Z an nx1 vector of an aggregate instrument.
-#' @param index_sub an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.NULL stands for selecting all the units.
+#' @param unit_covariates an optional . 
+#' @param time_covariates an optional . 
+#' @param index_sub an nx1 vector with binary coordinates. If the coordinate is TRUE, we include this state in the estimation. NULL stands for selecting all the units.
 #' @param T_0 the size of the learning period.
 #' @param unit_names an nx1 vector with unit names. It is used only in plot_1 function. 
 #' @param time_column If true, the units are in the rows and the time periods are in the columns in Y_mat_or and W_mat_or.
 #' @param D an nx1 vector of exposure.
 #' @param seed seed to set.
-#' @return A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function. 
+#' @return A robust estimator (S3 class) with result, attached as an attribute. It is an output of basic_analysis function. 
 #' @export
 #'
 

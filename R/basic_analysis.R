@@ -32,14 +32,14 @@ basic_analysis <- function(Y_mat, W_mat, Z, unit_covariates, time_covariates,
       unit_covariates <- matrix(1, ncol = 1, nrow = n)
     } else {
       unit_covariates <-  cbind(matrix(1, ncol = 1, nrow = n),
-                                matrix(unit_covariates, ncol = 1, nrow = n))
+                                matrix(unit_covariates, ncol = length(unit_covariates) %/% n, nrow = n))
     }
     
     if (is.null(time_covariates)){
       time_covariates <-  matrix(1, ncol = 1, nrow = T)
     } else {
       time_covariates <-  cbind(matrix(1, ncol = 1, nrow = T),
-                                matrix(time_covariates, ncol = 1, nrow = T))
+                                matrix(time_covariates, ncol = length(time_covariates) %/% T, nrow = T))
     }
     
   } else{

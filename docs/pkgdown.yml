@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Paper_estimation_results: Paper_estimation_results.html
   Paper_simulations_results: Paper_simulations_results.html
-last_built: 2024-04-30T17:44Z
+last_built: 2024-06-23T13:40Z
 urls:
   reference: https://antonzudin.github.io/Robust-TSLS-package/reference
   article: https://antonzudin.github.io/Robust-TSLS-package/articles
