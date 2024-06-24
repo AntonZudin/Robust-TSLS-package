@@ -4,7 +4,7 @@ Title: Robust estimator
 Version: 0.0.1
 Authors@R: c(
   person("Dmitry", "Arkhangelsky", email = "darkhangel@cemfi.es", role = c("aut", "cre")),
-  person("Anton", "Zudin", role = c("cre")),
+  person("Anton", "Zudin", role = c("aut")),
   person("Vasily", "Korovkin", role = c("aut")))
 Description: Robust estimator when the variable of interest is endogenous and 
              there is access to aggregate time-series instrument.
