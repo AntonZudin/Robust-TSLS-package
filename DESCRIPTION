@@ -2,9 +2,6 @@ Package: RobustTSLS
 Type: Package
 Title: Robust estimator 
 Version: 0.0.1
-Author: Dmitry Arkhangelsky [aut, cre]
-        Vasily Korovkin [aut]
-        Anton Zudin [cre]
 Authors@R: c(
   person("Dmitry", "Arkhangelsky", email = "darkhangel@cemfi.es", role = c("aut", "cre")),
   person("Anton", "Zudin", role = c("cre")),
