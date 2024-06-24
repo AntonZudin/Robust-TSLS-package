@@ -82,8 +82,16 @@
 <dd><p>an nx1 vector of an aggregate instrument.</p></dd>
 
 
+<dt>unit_covariates</dt>
+<dd><p>an optional nxC matrix of unit covariate(s), where C is the number of covariates. NULL stands for no covariates.</p></dd>
+
+
+<dt>time_covariates</dt>
+<dd><p>an optional TxC matrix of time covariate(s), where C is the number of covariates. NULL stands for no covariates.</p></dd>
+
+
 <dt>index_sub</dt>
-<dd><p>an nx1 vector with binary coordinates. If one of the coordinates is TRUE, we include this state in the estimation.NULL stands for selecting all the units.</p></dd>
+<dd><p>an nx1 vector with binary coordinates. If the coordinate is TRUE, we include this state in the estimation. NULL stands for selecting all the units.</p></dd>
 
 
 <dt>T_0</dt>
@@ -110,7 +118,7 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A robust estimator (S4 class) with result, attached as an attribute. It is an output of basic_analysis function.</p>
+<p>A robust estimator (S3 class) with result, attached as an attribute. It is an output of basic_analysis function.</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -118,7 +126,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Dmitry Arkhangelsky.</p>
+  <p>Developed by Dmitry Arkhangelsky, Anton Zudin, Vasily Korovkin.</p>
 </div>
 
 <div class="pkgdown-footer-right">
